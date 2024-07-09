@@ -3,7 +3,7 @@ import axios from 'axios';
 import TaskItem from './TaskItem';
 import AddTaskForm from "./AddTasksForm";
 import './Tasks.scss';
-import API_URL from '../../apiConfig'; // Importujemy API_URL z naszego pliku
+import API_URL from '../../apiConfig';
 
 function TaskList() {
     const [tasks, setTasks] = useState([]);
@@ -25,19 +25,37 @@ function TaskList() {
         }
     };
 
-    const handleAddTask = (newTask) => {
-        setTasks([...tasks, newTask]);
+    const handleAddTask = async (newTask) => {
+        try {
+            await axios.post(`${API_URL}/tasks`, newTask, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+            await fetchTasks();
+        } catch (error) {
+            console.error('Error adding task', error);
+        }
     };
 
-    const handleDeleteTask = (taskId) => {
-        setTasks(tasks.filter(task => task.id !== taskId));
+    const handleDeleteTask = async (taskId) => {
+        try {
+            await axios.delete(`${API_URL}/tasks/${taskId}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+            await fetchTasks();
+        } catch (error) {
+            console.error('Error deleting task', error);
+        }
     };
 
     return (
         <div className="tasks-container">
             <AddTaskForm onAdd={handleAddTask} />
             {tasks.map((task) => (
-                <TaskItem key={task.id} task={task} />
+                <TaskItem key={task.id} task={task} onDelete={handleDeleteTask} />
             ))}
         </div>
     );

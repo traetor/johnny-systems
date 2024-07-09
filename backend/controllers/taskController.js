@@ -2,18 +2,20 @@ const Task = require('../models/Task');
 
 exports.createTask = (req, res) => {
     const { title, description } = req.body;
-    const userId = req.user.id;
+    const user_id = req.user.id;
 
-    Task.create({ user_id: userId, title, description, status: 'to_do' }, (err, result) => {
+    Task.create({ user_id: user_id, title, description, status: 'to_do' }, (err, result) => {
         if (err) return res.status(500).send(err);
         res.status(201).send({ message: 'Task created successfully' });
     });
 };
 
 exports.getTasks = (req, res) => {
-    const userId = req.user.id;
+    console.log(req.user)
+    const user_id = req.user.id;
 
-    Task.findByUserId(userId, (err, tasks) => {
+    Task.findByUserId(user_id, (err, tasks) => {
+        console.log(tasks)
         if (err) return res.status(500).send(err);
         res.send(tasks);
     });

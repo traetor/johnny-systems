@@ -82,3 +82,49 @@
 .task-item button:hover {
   background-color: #c82333;
 }
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.popup button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.popup button:first-of-type {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.popup button:first-of-type:hover {
+  background-color: #218838;
+}
+
+.popup button:last-of-type {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.popup button:last-of-type:hover {
+  background-color: #c82333;
+}

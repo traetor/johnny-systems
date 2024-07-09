@@ -3,25 +3,36 @@ const fs = require('fs');
 const path = require('path');
 
 exports.getProfile = (req, res) => {
-    const userId = req.user.id;
+    const user_id = req.user.id;
 
-    User.findById(userId, (err, users) => {
+    User.findById(user_id, (err, users) => {
         if (err) return res.status(500).send(err);
         if (users.length === 0) return res.status(404).send({ message: 'User not found' });
 
-        res.send(users[0]);
+        const user = users[0];
+        if (user.avatar) {
+            const avatarPath = path.join(__dirname, '..', user.avatar);
+            fs.readFile(avatarPath, (err, data) => {
+                if (err) return res.status(500).send(err);
+                const avatarBase64 = `data:image/jpeg;base64,${data.toString('base64')}`;
+                user.avatar = avatarBase64;
+                res.send(user);
+            });
+        } else {
+            res.send(user);
+        }
     });
 };
 
 exports.updateProfile = (req, res) => {
-    const userId = req.user.id;
+    const user_id = req.user.id;
     const { username, email } = req.body;
     let avatar = null;
 
     if (req.file) {
         avatar = `/uploads/avatars/${req.file.filename}`;
 
-        User.findById(userId, (err, users) => {
+        User.findById(user_id, (err, users) => {
             if (err) return res.status(500).send(err);
             const oldAvatar = users[0].avatar;
             if (oldAvatar) {
@@ -32,8 +43,26 @@ exports.updateProfile = (req, res) => {
         });
     }
 
-    User.update(userId, { username, email, avatar }, (err, result) => {
+    User.update(user_id, { username, email, avatar }, (err, result) => {
         if (err) return res.status(500).send(err);
-        res.send({ message: 'Profile updated successfully' });
+
+        // Find the updated user profile and send it back with avatar in base64 format
+        User.findById(user_id, (err, users) => {
+            if (err) return res.status(500).send(err);
+            if (users.length === 0) return res.status(404).send({ message: 'User not found' });
+
+            const user = users[0];
+            if (user.avatar) {
+                const avatarPath = path.join(__dirname, '..', user.avatar);
+                fs.readFile(avatarPath, (err, data) => {
+                    if (err) return res.status(500).send(err);
+                    const avatarBase64 = `data:image/jpeg;base64,${data.toString('base64')}`;
+                    user.avatar = avatarBase64;
+                    res.send(user);
+                });
+            } else {
+                res.send(user);
+            }
+        });
     });
 };

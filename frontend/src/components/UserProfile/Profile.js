@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Profile.scss';
-import API_URL from '../../apiConfig'; // Importujemy API_URL z naszego pliku
+import API_URL from '../../apiConfig';
 
 function Profile() {
     const [user, setUser] = useState({});
@@ -36,12 +36,13 @@ function Profile() {
         formData.append('email', user.email);
 
         try {
-            await axios.put(`${API_URL}/users/profile`, formData, {
+            const response = await axios.put(`${API_URL}/users/profile`, formData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
             // Zaktualizuj profil użytkownika po pomyślnej aktualizacji
+            setUser(response.data);
         } catch (error) {
             console.error('Error updating profile', error);
         }
@@ -51,6 +52,9 @@ function Profile() {
         <div className="profile-container">
             <form onSubmit={handleProfileUpdate}>
                 <h2>Profile</h2>
+                {user.avatar && (
+                    <img src={user.avatar} alt="Avatar" className="avatar-preview" />
+                )}
                 <input
                     type="text"
                     placeholder="Username"

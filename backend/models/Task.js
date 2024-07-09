@@ -6,9 +6,9 @@ class Task {
         db.query(sql, [data.user_id, data.title, data.description, data.status], callback);
     }
 
-    static findByUserId(userId, callback) {
+    static findByUserId(user_id, callback) {
         const sql = "SELECT * FROM tasks WHERE user_id = ?";
-        db.query(sql, [userId], callback);
+        db.query(sql, [user_id], callback);
     }
 
     static update(id, data, callback) {
