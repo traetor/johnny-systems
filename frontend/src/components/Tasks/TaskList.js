@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TaskItem from './TaskItem';
 import './Tasks.scss';
+import API_URL from '../../apiConfig'; // Importujemy API_URL z naszego pliku
 
 function TaskList() {
     const [tasks, setTasks] = useState([]);
@@ -9,7 +10,7 @@ function TaskList() {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get('/api/tasks', {
+                const response = await axios.get(`${API_URL}/tasks`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },

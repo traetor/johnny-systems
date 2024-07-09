@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Auth.scss';
+import API_URL from '../../apiConfig'; // Importujemy API_URL z naszego pliku
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -10,7 +11,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/api/auth/register', { username, email, password });
+            await axios.post(`${API_URL}/auth/register`, { username, email, password });
             // Przekieruj na stronę logowania po udanej rejestracji
         } catch (error) {
             console.error('Register error', error);

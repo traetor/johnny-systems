@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Profile.scss';
+import API_URL from '../../apiConfig'; // Importujemy API_URL z naszego pliku
 
 function Profile() {
     const [user, setUser] = useState({});
@@ -9,7 +10,7 @@ function Profile() {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get('/api/users/profile', {
+                const response = await axios.get(`${API_URL}/users/profile`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
@@ -35,7 +36,7 @@ function Profile() {
         formData.append('email', user.email);
 
         try {
-            await axios.put('/api/users/profile', formData, {
+            await axios.put(`${API_URL}/users/profile`, formData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
