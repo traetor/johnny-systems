@@ -11,11 +11,9 @@ exports.createTask = (req, res) => {
 };
 
 exports.getTasks = (req, res) => {
-    console.log(req.user)
     const user_id = req.user.id;
 
     Task.findByUserId(user_id, (err, tasks) => {
-        console.log(tasks)
         if (err) return res.status(500).send(err);
         res.send(tasks);
     });
