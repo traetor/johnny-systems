@@ -8,8 +8,10 @@ exports.authMiddleware = (req, res, next) => {
 
     if (!token) return res.status(401).send({ message: 'No token provided' });
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) return res.status(500).send({ message: 'Failed to authenticate token' });
+    jwt.verify(token.split(' ')[1], process.env.JWT_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({ message: 'Failed to authenticate token' });
+        }
 
         req.user = decoded;
         next();

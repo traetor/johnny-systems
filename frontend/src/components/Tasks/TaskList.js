@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TaskItem from './TaskItem';
+import AddTaskForm from "./AddTasksForm";
 import './Tasks.scss';
 import API_URL from '../../apiConfig'; // Importujemy API_URL z naszego pliku
 
@@ -8,24 +9,33 @@ function TaskList() {
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        const fetchTasks = async () => {
-            try {
-                const response = await axios.get(`${API_URL}/tasks`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    },
-                });
-                setTasks(response.data);
-            } catch (error) {
-                console.error('Error fetching tasks', error);
-            }
-        };
-
         fetchTasks();
     }, []);
 
+    const fetchTasks = async () => {
+        try {
+            const response = await axios.get(`${API_URL}/tasks`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+            setTasks(response.data);
+        } catch (error) {
+            console.error('Error fetching tasks', error);
+        }
+    };
+
+    const handleAddTask = (newTask) => {
+        setTasks([...tasks, newTask]);
+    };
+
+    const handleDeleteTask = (taskId) => {
+        setTasks(tasks.filter(task => task.id !== taskId));
+    };
+
     return (
         <div className="tasks-container">
+            <AddTaskForm onAdd={handleAddTask} />
             {tasks.map((task) => (
                 <TaskItem key={task.id} task={task} />
             ))}
