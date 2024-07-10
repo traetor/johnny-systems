@@ -28,9 +28,46 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
   }
 
   button:hover {
     background-color: #0056b3;
+  }
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .left-section {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+
+    .welcome-text {
+      font-size: 2rem;
+    }
+  }
+
+  .right-section {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+
+    .left-section,
+    .right-section {
+      width: 100%;
+      padding: 10px;
+    }
   }
 }
