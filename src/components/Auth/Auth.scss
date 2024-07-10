@@ -36,6 +36,13 @@
   }
 }
 
+.intro {
+  background-image: url('../../images/background-pexels.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .main-container {
   display: flex;
   flex-direction: row;

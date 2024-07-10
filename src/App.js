@@ -9,6 +9,7 @@ import Welcome from './components/Welcome/Welcome'; // Import Welcome
 import { AuthProvider } from './contexts/AuthContext'; // Importujemy kontekst autoryzacji
 import PrivateRoute from './components/PrivateRoute'; // Importujemy komponent PrivateRoute
 import texts from './texts'; // Importujemy tłumaczenia
+import './App.scss'
 
 function App() {
     const [language, setLanguage] = useState('pl'); // Domyślny język: polski

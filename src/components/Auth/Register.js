@@ -3,8 +3,9 @@ import axios from 'axios';
 import './Auth.scss';
 import API_URL from '../../apiConfig';
 import { useNavigate } from 'react-router-dom';
+import Welcome from "../Welcome/Welcome";
 
-function Register() {
+function Register({ language }) {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -38,7 +39,8 @@ function Register() {
     };
 
     return (
-        <div className="main-container">
+        <div className="main-container intro">
+            <Welcome language={language} />
             <div className="right-section">
                 <div className="auth-container">
                     <form onSubmit={handleSubmit}>

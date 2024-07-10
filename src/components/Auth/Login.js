@@ -46,7 +46,7 @@ function Login({ language }) {
     };
 
     return (
-        <div className="main-container">
+        <div className="main-container intro">
             <Welcome language={language} /> {/* Przekazanie języka do komponentu Welcome */}
             <div className="right-section">
                 <div className="auth-container">
@@ -54,13 +54,13 @@ function Login({ language }) {
                         <h2>{texts[language].login}</h2>
                         <input
                             type="email"
-                            placeholder={texts[language].email}
+                            placeholder={'Email'}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
                             type="password"
-                            placeholder={texts[language].password}
+                            placeholder={'Password'}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
