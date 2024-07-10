@@ -49,27 +49,29 @@ function Profile() {
     };
 
     return (
-        <div className="profile-container">
-            <form onSubmit={handleProfileUpdate}>
-                <h2>Profile</h2>
-                {user.avatar && (
-                    <img src={user.avatar} alt="Avatar" className="avatar-preview" />
-                )}
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={user.username}
-                    onChange={(e) => setUser({ ...user, username: e.target.value })}
-                />
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={user.email}
-                    onChange={(e) => setUser({ ...user, email: e.target.value })}
-                />
-                <input type="file" onChange={handleAvatarChange} />
-                <button className="button primary" type="submit">Aktualizuj</button>
-            </form>
+        <div className="container">
+            <div className="profile-container">
+                <form onSubmit={handleProfileUpdate}>
+                    <h2>Profile</h2>
+                    {user.avatar && (
+                        <img src={user.avatar} alt="Avatar" className="avatar-preview"/>
+                    )}
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        value={user.username}
+                        onChange={(e) => setUser({...user, username: e.target.value})}
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={user.email}
+                        onChange={(e) => setUser({...user, email: e.target.value})}
+                    />
+                    <input type="file" onChange={handleAvatarChange}/>
+                    <button className="button primary" type="submit">Aktualizuj</button>
+                </form>
+            </div>
         </div>
     );
 }

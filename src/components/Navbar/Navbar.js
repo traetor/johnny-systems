@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import texts from '../../texts';
 import './Navbar.scss';
 
-function Navbar() {
+function Navbar({ language, handleLanguageChange }) {
     const { isLoggedIn, logout } = useAuth();
-    const [language, setLanguage] = useState('pl'); // Default language: Polish
-
-    const handleLanguageChange = (e) => {
-        setLanguage(e.target.value);
-    };
 
     return (
         <nav className="navbar">
@@ -20,7 +15,6 @@ function Navbar() {
                     <Link to="/profile">{texts[language].profile}</Link>
                     <Link to="/" onClick={logout}>{texts[language].logout}</Link>
                 </>
-
             ) : (
                 <></>
             )}

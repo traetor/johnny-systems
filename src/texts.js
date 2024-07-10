@@ -1,5 +1,3 @@
-// src/texts.js
-
 const texts = {
     pl: {
         tasks: 'Zadania',
@@ -13,6 +11,8 @@ const texts = {
         loginError: 'Błąd logowania. Spróbuj ponownie później.',
         registerSuccess: 'Rejestracja udana',
         profileUpdated: 'Profil zaktualizowany pomyślnie',
+        welcome: 'Wszystko w jednej aplikacji, dla efektywnej pracy',
+        welcomeDescription: 'Zarządzaj wszystkim w jednym miejscu, dostosowanym do każdego rodzaju pracy.',
     },
     en: {
         tasks: 'Tasks',
@@ -26,6 +26,8 @@ const texts = {
         loginError: 'Login error. Please try again later.',
         registerSuccess: 'Registration successful',
         profileUpdated: 'Profile updated successfully',
+        welcome: 'The everything app, for effective work',
+        welcomeDescription: 'Manage everything in one place, tailored for any type of work.',
     },
     de: {
         tasks: 'Aufgaben',
@@ -39,6 +41,8 @@ const texts = {
         loginError: 'Anmeldefehler. Bitte versuchen Sie es später erneut.',
         registerSuccess: 'Registrierung erfolgreich',
         profileUpdated: 'Profil erfolgreich aktualisiert',
+        welcome: 'Alles in einer App, für effektive Arbeit',
+        welcomeDescription: 'Verwalten Sie alles an einem Ort, maßgeschneidert für jede Art von Arbeit.',
     },
 };
 

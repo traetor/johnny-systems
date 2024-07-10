@@ -4,8 +4,10 @@ import './Auth.scss';
 import { useNavigate } from 'react-router-dom';
 import API_URL from '../../apiConfig';
 import { useAuth } from '../../contexts/AuthContext';
+import Welcome from "../Welcome/Welcome";
+import texts from "../../texts";
 
-function Login() {
+function Login({ language }) {
     const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -35,9 +37,9 @@ function Login() {
             navigate('/tasks');
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                setError('Nieprawidłowy email lub hasło');
+                setError(texts[language].invalidCredentials); // Ustawienie odpowiedniego błędu na podstawie języka
             } else {
-                setError('Błąd logowania. Proszę spróbować ponownie później.');
+                setError(texts[language].loginError); // Ustawienie ogólnego błędu logowania
             }
             console.error('Błąd logowania', error);
         }
@@ -45,25 +47,26 @@ function Login() {
 
     return (
         <div className="main-container">
+            <Welcome language={language} /> {/* Przekazanie języka do komponentu Welcome */}
             <div className="right-section">
                 <div className="auth-container">
                     <form onSubmit={handleSubmit}>
-                        <h2>Login</h2>
+                        <h2>{texts[language].login}</h2>
                         <input
                             type="email"
-                            placeholder="Email"
+                            placeholder={texts[language].email}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
                             type="password"
-                            placeholder="Password"
+                            placeholder={texts[language].password}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <button className="button primary" type="submit">Zaloguj się</button>
+                        <button className="button primary" type="submit">{texts[language].login}</button>
                         <button className="button primary" type="button" onClick={() => navigate('/register')}>
-                            Zarejestruj się
+                            {texts[language].register}
                         </button>
                         {error && <p className="error-message">{error}</p>}
                     </form>
