@@ -69,62 +69,64 @@ const TaskList = () => {
     };
 
     return (
-        <div className="container tasks-container">
-            <AddTaskForm onAdd={handleAddTask} />
-            <div className="task-columns">
-                <div
-                    className="task-column"
-                    onDragOver={(e) => onDragOver(e)}
-                    onDrop={(e) => onDrop(e, 'to_do')}
-                >
-                    <h2>To Do</h2>
-                    {tasks
-                        .filter(task => task.status === 'to_do')
-                        .map(task => (
-                            <div
-                                key={task.id}
-                                draggable
-                                onDragStart={(e) => onDragStart(e, task.id)}
-                            >
-                                <TaskItem task={task} onDelete={handleDeleteTask} />
-                            </div>
-                        ))}
-                </div>
-                <div
-                    className="task-column"
-                    onDragOver={(e) => onDragOver(e)}
-                    onDrop={(e) => onDrop(e, 'in_progress')}
-                >
-                    <h2>In Progress</h2>
-                    {tasks
-                        .filter(task => task.status === 'in_progress')
-                        .map(task => (
-                            <div
-                                key={task.id}
-                                draggable
-                                onDragStart={(e) => onDragStart(e, task.id)}
-                            >
-                                <TaskItem task={task} onDelete={handleDeleteTask} />
-                            </div>
-                        ))}
-                </div>
-                <div
-                    className="task-column"
-                    onDragOver={(e) => onDragOver(e)}
-                    onDrop={(e) => onDrop(e, 'done')}
-                >
-                    <h2>Done</h2>
-                    {tasks
-                        .filter(task => task.status === 'done')
-                        .map(task => (
-                            <div
-                                key={task.id}
-                                draggable
-                                onDragStart={(e) => onDragStart(e, task.id)}
-                            >
-                                <TaskItem task={task} onDelete={handleDeleteTask} />
-                            </div>
-                        ))}
+        <div className="container intro">
+            <div className="tasks-container">
+                <AddTaskForm onAdd={handleAddTask}/>
+                <div className="task-columns">
+                    <div
+                        className="task-column"
+                        onDragOver={(e) => onDragOver(e)}
+                        onDrop={(e) => onDrop(e, 'to_do')}
+                    >
+                        <h2>To Do</h2>
+                        {tasks
+                            .filter(task => task.status === 'to_do')
+                            .map(task => (
+                                <div
+                                    key={task.id}
+                                    draggable
+                                    onDragStart={(e) => onDragStart(e, task.id)}
+                                >
+                                    <TaskItem task={task} onDelete={handleDeleteTask}/>
+                                </div>
+                            ))}
+                    </div>
+                    <div
+                        className="task-column"
+                        onDragOver={(e) => onDragOver(e)}
+                        onDrop={(e) => onDrop(e, 'in_progress')}
+                    >
+                        <h2>In Progress</h2>
+                        {tasks
+                            .filter(task => task.status === 'in_progress')
+                            .map(task => (
+                                <div
+                                    key={task.id}
+                                    draggable
+                                    onDragStart={(e) => onDragStart(e, task.id)}
+                                >
+                                    <TaskItem task={task} onDelete={handleDeleteTask}/>
+                                </div>
+                            ))}
+                    </div>
+                    <div
+                        className="task-column"
+                        onDragOver={(e) => onDragOver(e)}
+                        onDrop={(e) => onDrop(e, 'done')}
+                    >
+                        <h2>Done</h2>
+                        {tasks
+                            .filter(task => task.status === 'done')
+                            .map(task => (
+                                <div
+                                    key={task.id}
+                                    draggable
+                                    onDragStart={(e) => onDragStart(e, task.id)}
+                                >
+                                    <TaskItem task={task} onDelete={handleDeleteTask}/>
+                                </div>
+                            ))}
+                    </div>
                 </div>
             </div>
         </div>

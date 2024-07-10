@@ -46,30 +46,32 @@ function Login({ language }) {
     };
 
     return (
-        <div className="main-container intro">
-            <Welcome language={language} /> {/* Przekazanie języka do komponentu Welcome */}
-            <div className="right-section">
-                <div className="auth-container">
-                    <form onSubmit={handleSubmit}>
-                        <h2>{texts[language].login}</h2>
-                        <input
-                            type="email"
-                            placeholder={'Email'}
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <input
-                            type="password"
-                            placeholder={'Password'}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button className="button primary" type="submit">{texts[language].login}</button>
-                        <button className="button primary" type="button" onClick={() => navigate('/register')}>
-                            {texts[language].register}
-                        </button>
-                        {error && <p className="error-message">{error}</p>}
-                    </form>
+        <div className="intro">
+            <div className="main-container intro-content">
+                <Welcome language={language} /> {/* Przekazanie języka do komponentu Welcome */}
+                <div className="right-section">
+                    <div className="auth-container">
+                        <form onSubmit={handleSubmit}>
+                            <h2>{texts[language].login}</h2>
+                            <input
+                                type="email"
+                                placeholder={'Email'}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <input
+                                type="password"
+                                placeholder={'Password'}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <button className="button primary" type="submit">{texts[language].login}</button>
+                            <button className="button primary" type="button" onClick={() => navigate('/register')}>
+                                {texts[language].register}
+                            </button>
+                            {error && <p className="error-message">{error}</p>}
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -7,6 +7,13 @@
   gap: 20px;
 }
 
+.intro {
+  background-image: url('../../images/background-pexels.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .task-columns {
   display: flex;
   gap: 20px;
