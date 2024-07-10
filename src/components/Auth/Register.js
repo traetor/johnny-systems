@@ -39,36 +39,38 @@ function Register({ language }) {
     };
 
     return (
-        <div className="main-container intro">
-            <Welcome language={language} />
-            <div className="right-section">
-                <div className="auth-container">
-                    <form onSubmit={handleSubmit}>
-                        <h2>Register</h2>
-                        <input
-                            type="text"
-                            placeholder="Username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button className="button primary" type="submit">Zarejestruj się</button>
-                        <button className="button primary" type="button" onClick={() => navigate('/')}>
-                            Zaloguj się
-                        </button>
-                        {error && <p className="error-message">{error}</p>}
-                    </form>
+        <div className="intro">
+            <div className="main-container intro-content">
+                <Welcome language={language} />
+                <div className="right-section">
+                    <div className="auth-container">
+                        <form onSubmit={handleSubmit}>
+                            <h2>Register</h2>
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <button className="button primary" type="submit">Zarejestruj się</button>
+                            <button className="button primary" type="button" onClick={() => navigate('/')}>
+                                Zaloguj się
+                            </button>
+                            {error && <p className="error-message">{error}</p>}
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
