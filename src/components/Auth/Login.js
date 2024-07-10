@@ -32,24 +32,31 @@ function Login() {
     };
 
     return (
-        <div className="auth-container">
-            <form onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button type="submit">Login</button>
-                {error && <p className="error-message">{error}</p>}
-            </form>
+        <div className="main-container">
+            <div className="right-section">
+                <div className="auth-container">
+                    <form onSubmit={handleSubmit}>
+                        <h2>Login</h2>
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <button type="submit">Zaloguj się</button>
+                        <button type="button" onClick={() => navigate('/register')}>
+                            Zarejestruj się
+                        </button>
+                        {error && <p className="error-message">{error}</p>}
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }

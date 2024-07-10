@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from '../components/Auth/Login';
 
-function LoginPage() {
+function LoginPage({ hideWelcomeMessage }) {
     return <Login />;
 }
 
