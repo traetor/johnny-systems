@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Auth.scss';
-import API_URL from '../../apiConfig'; // Importujemy API_URL z naszego pliku
-import { useNavigate } from 'react-router-dom'; // Używamy useNavigate zamiast history
+import API_URL from '../../apiConfig';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // Używamy useNavigate do nawigacji
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await axios.post(`${API_URL}/auth/register`, { username, email, password });
-            // Przekieruj na stronę logowania po udanej rejestracji
+            // Redirect to login page after successful registration
         } catch (error) {
             console.error('Register error', error);
         }
@@ -44,9 +44,9 @@ function Register() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <button type="submit">Zarejestruj się</button>
+                        <button type="submit">Register</button>
                         <button type="button" onClick={() => navigate('/')}>
-                            Zaloguj się
+                            Login
                         </button>
                     </form>
                 </div>

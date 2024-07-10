@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Auth.scss';
-import { useNavigate } from 'react-router-dom'; // Używamy useNavigate zamiast history
-import API_URL from '../../apiConfig'; // Importujemy API_URL z naszego pliku
+import { useNavigate } from 'react-router-dom';
+import API_URL from '../../apiConfig';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Używamy useNavigate do nawigacji
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,10 +16,10 @@ function Login() {
             const response = await axios.post(`${API_URL}/auth/login`, { email, password });
             const { token } = response.data;
 
-            // Zapisz token w local storage
+            // Save token to local storage
             localStorage.setItem('token', token);
 
-            // Przekieruj na stronę zadań
+            // Redirect to tasks page
             navigate('/tasks');
         } catch (error) {
             if (error.response && error.response.status === 401) {
@@ -49,9 +49,9 @@ function Login() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <button type="submit">Zaloguj się</button>
+                        <button type="submit">Log in</button>
                         <button type="button" onClick={() => navigate('/register')}>
-                            Zarejestruj się
+                            Register
                         </button>
                         {error && <p className="error-message">{error}</p>}
                     </form>

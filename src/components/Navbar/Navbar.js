@@ -1,14 +1,12 @@
-// src/components/Navbar/Navbar.js
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext'; // Importujemy kontekst autoryzacji
-import texts from '../../texts'; // Importujemy tablicę tekstów
+import { useAuth } from '../../contexts/AuthContext';
+import texts from '../../texts';
 import './Navbar.scss';
 
 function Navbar() {
     const { isLoggedIn, logout } = useAuth();
-    const [language, setLanguage] = useState('pl'); // Domyślny język: polski
+    const [language, setLanguage] = useState('pl'); // Default language: Polish
 
     const handleLanguageChange = (e) => {
         setLanguage(e.target.value);

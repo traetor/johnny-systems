@@ -70,6 +70,7 @@ const TaskList = () => {
 
     return (
         <div className="tasks-container">
+            <AddTaskForm onAdd={handleAddTask} />
             <div className="task-columns">
                 <div
                     className="task-column"
@@ -126,7 +127,6 @@ const TaskList = () => {
                         ))}
                 </div>
             </div>
-            <AddTaskForm onAdd={handleAddTask} />
         </div>
     );
 };

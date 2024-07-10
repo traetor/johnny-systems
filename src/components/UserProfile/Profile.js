@@ -41,7 +41,7 @@ function Profile() {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
-            // Zaktualizuj profil użytkownika po pomyślnej aktualizacji
+            // Update user profile after successful update
             setUser(response.data);
         } catch (error) {
             console.error('Error updating profile', error);
