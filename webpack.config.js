@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/index.js',
@@ -30,6 +31,9 @@ module.exports = {
             directory: path.join(__dirname, 'public'),
         },
         port: 4000,
-        historyApiFallback: true, // Dodanie historyApiFallback
+        historyApiFallback: true,
     },
+    plugins: [
+        new Dotenv()
+    ],
 };
