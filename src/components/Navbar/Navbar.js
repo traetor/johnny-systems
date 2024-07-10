@@ -14,10 +14,13 @@ function Navbar() {
 
     return (
         <nav className="navbar">
-            <Link to="/tasks">{texts[language].tasks}</Link>
-            <Link to="/profile">{texts[language].profile}</Link>
             {isLoggedIn ? (
-                <Link to="/" onClick={logout}>{texts[language].logout}</Link>
+                <>
+                    <Link to="/tasks">{texts[language].tasks}</Link>
+                    <Link to="/profile">{texts[language].profile}</Link>
+                    <Link to="/" onClick={logout}>{texts[language].logout}</Link>
+                </>
+
             ) : (
                 <></>
             )}

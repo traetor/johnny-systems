@@ -8,15 +8,32 @@ function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Prosta walidacja
+        if (!username || !email || !password) {
+            setError('Proszę wypełnić wszystkie pola formularza');
+            return;
+        }
+
+        // Walidacja adresu email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError('Proszę podać poprawny adres email');
+            return;
+        }
+
         try {
             await axios.post(`${API_URL}/auth/register`, { username, email, password });
-            // Redirect to login page after successful registration
+            // Przekierowanie do strony logowania po udanej rejestracji
+            navigate('/');
         } catch (error) {
             console.error('Register error', error);
+            setError('Błąd podczas rejestracji. Proszę spróbować ponownie później.');
         }
     };
 
@@ -48,6 +65,7 @@ function Register() {
                         <button className="button primary" type="button" onClick={() => navigate('/')}>
                             Zaloguj się
                         </button>
+                        {error && <p className="error-message">{error}</p>}
                     </form>
                 </div>
             </div>

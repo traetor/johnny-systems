@@ -14,25 +14,32 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Walidacja pól formularza
+        if (!email || !password) {
+            setError('Proszę wypełnić wszystkie pola');
+            return;
+        }
+
         try {
             const response = await axios.post(`${API_URL}/auth/login`, { email, password });
             const { token } = response.data;
 
-            // Save token to local storage
+            // Zapisz token w localStorage
             localStorage.setItem('token', token);
 
-            // Update authentication state
-            login(token); // Assuming this method updates isLoggedIn state in AuthContext
+            // Zaktualizuj stan autoryzacji
+            login(token); // Zakładając, że ta metoda aktualizuje stan isLoggedIn w AuthContext
 
-            // Redirect to tasks page
+            // Przekieruj na stronę zadan
             navigate('/tasks');
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                setError('Invalid email or password');
+                setError('Nieprawidłowy email lub hasło');
             } else {
-                setError('Login error. Please try again later.');
+                setError('Błąd logowania. Proszę spróbować ponownie później.');
             }
-            console.error('Login error', error);
+            console.error('Błąd logowania', error);
         }
     };
 
