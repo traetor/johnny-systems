@@ -19,7 +19,7 @@ function Navbar() {
             {isLoggedIn ? (
                 <Link to="/" onClick={logout}>{texts[language].logout}</Link>
             ) : (
-                <Link to="/register">{texts[language].register}</Link>
+                <></>
             )}
             <select value={language} onChange={handleLanguageChange}>
                 <option value="pl">Polski</option>

@@ -3,8 +3,10 @@ import axios from 'axios';
 import './Auth.scss';
 import { useNavigate } from 'react-router-dom';
 import API_URL from '../../apiConfig';
+import { useAuth } from '../../contexts/AuthContext';
 
 function Login() {
+    const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -18,6 +20,9 @@ function Login() {
 
             // Save token to local storage
             localStorage.setItem('token', token);
+
+            // Update authentication state
+            login(token); // Assuming this method updates isLoggedIn state in AuthContext
 
             // Redirect to tasks page
             navigate('/tasks');
