@@ -44,9 +44,9 @@ function Register() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <button type="submit">Register</button>
-                        <button type="button" onClick={() => navigate('/')}>
-                            Login
+                        <button className="button primary" type="submit">Zarejestruj się</button>
+                        <button className="button primary" type="button" onClick={() => navigate('/')}>
+                            Zaloguj się
                         </button>
                     </form>
                 </div>

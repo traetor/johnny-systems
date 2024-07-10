@@ -38,7 +38,7 @@ function AddTaskForm({ onAdd }) {
                 onChange={(e) => setDescription(e.target.value)}
                 required
             />
-            <button type="submit">Add Task</button>
+            <button className="button primary" type="submit">Add Task</button>
         </form>
     );
 }

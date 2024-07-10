@@ -54,9 +54,9 @@ function Login() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <button type="submit">Log in</button>
-                        <button type="button" onClick={() => navigate('/register')}>
-                            Register
+                        <button className="button primary" type="submit">Zaloguj się</button>
+                        <button className="button primary" type="button" onClick={() => navigate('/register')}>
+                            Zarejestruj się
                         </button>
                         {error && <p className="error-message">{error}</p>}
                     </form>

@@ -1,0 +1,86 @@
+// Buttons.scss
+
+/* Przycisk podstawowy */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 2px solid #333;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.primary {
+    background-color: #0F111A;
+    color: #fff;
+    border-color: #0F111A;
+
+    &:hover {
+      background-color: #1B2529;
+      border-color: #1B2529;
+    }
+  }
+
+  &.secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border-color: #6c757d;
+
+    &:hover {
+      background-color: #5a6268;
+      border-color: #545b62;
+    }
+  }
+
+  &.danger {
+    background-color: #dc3545;
+    color: #fff;
+    border-color: #dc3545;
+
+    &:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: #fff;
+      color: #333;
+      border-color: #333;
+    }
+  }
+}
+
+/* Przycisk dla linków */
+.button-link {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

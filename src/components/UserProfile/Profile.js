@@ -68,7 +68,7 @@ function Profile() {
                     onChange={(e) => setUser({ ...user, email: e.target.value })}
                 />
                 <input type="file" onChange={handleAvatarChange} />
-                <button type="submit">Update Profile</button>
+                <button className="button primary" type="submit">Aktualizuj</button>
             </form>
         </div>
     );

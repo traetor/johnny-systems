@@ -7,6 +7,7 @@ import TaskPage from './pages/TaskPage';
 import ProfilePage from './pages/ProfilePage';
 import { AuthProvider } from './contexts/AuthContext'; // Importujemy kontekst autoryzacji
 import PrivateRoute from './components/PrivateRoute'; // Importujemy komponent PrivateRoute
+import './App.scss'
 
 function App() {
     return (
