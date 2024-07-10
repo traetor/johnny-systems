@@ -1,3 +1,2 @@
-const API_URL = 'https://johnny-systems-backend.vercel.app/api'; // Adres Twojego backendu
-
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
 export default API_URL;
