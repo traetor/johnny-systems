@@ -6,18 +6,19 @@ import API_URL from '../../apiConfig';
 import { useAuth } from '../../contexts/AuthContext';
 import Welcome from "../Welcome/Welcome";
 import texts from "../../texts";
+import "./Password.scss";
 
 function Login({ language }) {
     const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false); // Dodaj stan dla widoczności hasła
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Walidacja pól formularza
         if (!email || !password) {
             setError('Proszę wypełnić wszystkie pola');
             return;
@@ -27,28 +28,28 @@ function Login({ language }) {
             const response = await axios.post(`${API_URL}/auth/login`, { email, password });
             const { token } = response.data;
 
-            // Zapisz token w localStorage
             localStorage.setItem('token', token);
+            login(token);
 
-            // Zaktualizuj stan autoryzacji
-            login(token); // Zakładając, że ta metoda aktualizuje stan isLoggedIn w AuthContext
-
-            // Przekieruj na stronę zadan
             navigate('/tasks');
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                setError(texts[language].invalidCredentials); // Ustawienie odpowiedniego błędu na podstawie języka
+                setError(texts[language].invalidCredentials);
             } else {
-                setError(texts[language].loginError); // Ustawienie ogólnego błędu logowania
+                setError(texts[language].loginError);
             }
             console.error('Błąd logowania', error);
         }
     };
 
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword); // Funkcja do przełączania widoczności hasła
+    };
+
     return (
         <div className="intro">
             <div className="main-container intro-content">
-                <Welcome language={language} /> {/* Przekazanie języka do komponentu Welcome */}
+                <Welcome language={language} />
                 <div className="right-section">
                     <div className="auth-container">
                         <form onSubmit={handleSubmit}>
@@ -59,12 +60,17 @@ function Login({ language }) {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            <input
-                                type="password"
-                                placeholder={'Password'}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
+                            <div className="password-container">
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder={'Password'}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <button type="button" onClick={toggleShowPassword}>
+                                    {showPassword ? 'Ukryj' : 'Pokaż'}
+                                </button>
+                            </div>
                             <button className="button primary" type="submit">{texts[language].login}</button>
                             <button className="button primary" type="button" onClick={() => navigate('/register')}>
                                 {texts[language].register}

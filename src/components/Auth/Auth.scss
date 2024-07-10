@@ -16,7 +16,7 @@ $background-overlay: rgba(0, 0, 0, 0.7);
   display: block;
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin: 5px 0;
   border: 1px solid $secondary-color;
   border-radius: 5px;
   background-color: $secondary-color;
@@ -24,7 +24,7 @@ $background-overlay: rgba(0, 0, 0, 0.7);
 }
 
 .auth-container {
-  width: 100%;
+  width: 400px;
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -38,12 +38,12 @@ $background-overlay: rgba(0, 0, 0, 0.7);
 
   input {
     @include input-styles;
+    width: 378px;
   }
 
   button {
     display: block;
-    width: 100%;
-    max-width: 400px;
+    width: 400px;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -117,7 +117,7 @@ $background-overlay: rgba(0, 0, 0, 0.7);
 
     input {
       width: 100%;
-      max-width: 280px;
+      max-width: 278px;
     }
 
     button {
