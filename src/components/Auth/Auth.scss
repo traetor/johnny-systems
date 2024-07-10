@@ -1,10 +1,10 @@
 .auth-container {
-  max-width: 400px;
+  width: 400px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #151F29;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #151F29;
 
   h2 {
     text-align: center;
@@ -12,19 +12,19 @@
 
   input {
     display: block;
-    width: 100%;
+    width: 380px;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid #0F111A;
     border-radius: 5px;
+    background-color: #0F111A;
+    color: #959595;
   }
 
   button {
     display: block;
-    width: 100%;
+    width: 400px;
     padding: 10px;
-    background-color: #007bff;
-    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -32,7 +32,7 @@
   }
 
   button:hover {
-    background-color: #0056b3;
+    background-color: #959595;
   }
 }
 
@@ -49,7 +49,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Czarny kolor z 50% przezroczystością */
+    background: rgba(0, 0, 0, 0.7); /* Czarny kolor z 50% przezroczystością */
     z-index: 1; /* Umieść go nad tłem, ale pod inną zawartością */
   }
 }
@@ -83,7 +83,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
   .main-container {
     flex-direction: column;
 
@@ -91,6 +91,7 @@
     .right-section {
       width: 100%;
       padding: 10px;
+      align-content: center;
     }
   }
 }

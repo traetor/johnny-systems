@@ -69,8 +69,8 @@ const TaskList = () => {
     };
 
     return (
-        <div className="container intro">
-            <div className="tasks-container">
+        <div className="intro">
+            <div className="container intro-content tasks-container">
                 <AddTaskForm onAdd={handleAddTask}/>
                 <div className="task-columns">
                     <div
