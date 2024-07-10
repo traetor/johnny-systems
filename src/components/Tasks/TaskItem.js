@@ -20,8 +20,6 @@ const TaskItem = ({ task, onDelete }) => {
     return (
         <div className="task-item">
             <h3>{task.title}</h3>
-            <p>Status: {task.status}</p>
-
             <button onClick={() => handleDelete()}>Delete</button>
         </div>
     );
