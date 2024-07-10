@@ -13,6 +13,8 @@ const texts = {
         profileUpdated: 'Profil zaktualizowany pomyślnie',
         welcome: 'Wszystko w jednej aplikacji, dla efektywnej pracy',
         welcomeDescription: 'Zarządzaj wszystkim w jednym miejscu, dostosowanym do każdego rodzaju pracy.',
+        accountNotActivated: 'Konto nie jest aktywowane. Sprawdź swój email, aby aktywować konto.',
+        userNotFound: 'Użytkownik nie został znaleziony',
     },
     en: {
         tasks: 'Tasks',
@@ -28,6 +30,8 @@ const texts = {
         profileUpdated: 'Profile updated successfully',
         welcome: 'The everything app, for effective work',
         welcomeDescription: 'Manage everything in one place, tailored for any type of work.',
+        accountNotActivated: 'Account is not activated. Please check your email for activation link.',
+        userNotFound: 'User not found',
     },
     de: {
         tasks: 'Aufgaben',
@@ -43,6 +47,8 @@ const texts = {
         profileUpdated: 'Profil erfolgreich aktualisiert',
         welcome: 'Alles in einer App, für effektive Arbeit',
         welcomeDescription: 'Verwalten Sie alles an einem Ort, maßgeschneidert für jede Art von Arbeit.',
+        accountNotActivated: 'Konto ist nicht aktiviert. Bitte überprüfen Sie Ihre E-Mail für den Aktivierungslink.',
+        userNotFound: 'Benutzer nicht gefunden',
     },
 };
 

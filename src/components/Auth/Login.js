@@ -12,7 +12,7 @@ function Login({ language }) {
     const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false); // Dodaj stan dla widoczności hasła
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -20,21 +20,30 @@ function Login({ language }) {
         e.preventDefault();
 
         if (!email || !password) {
-            setError('Proszę wypełnić wszystkie pola');
+            setError(texts[language].error);
             return;
         }
 
         try {
             const response = await axios.post(`${API_URL}/auth/login`, { email, password });
-            const { token } = response.data;
 
-            localStorage.setItem('token', token);
-            login(token);
-
-            navigate('/tasks');
+            if (response.status === 200) {
+                const { token } = response.data;
+                localStorage.setItem('token', token);
+                login(token);
+                navigate('/tasks');
+            }
         } catch (error) {
-            if (error.response && error.response.status === 401) {
-                setError(texts[language].invalidCredentials);
+            if (error.response) {
+                if (error.response.status === 401) {
+                    setError(texts[language].invalidCredentials);
+                } else if (error.response.status === 403) {
+                    setError(texts[language].accountNotActivated); // Komunikat o nieaktywowanym koncie
+                } else if (error.response.status === 404) {
+                    setError(texts[language].userNotFound);
+                } else {
+                    setError(texts[language].loginError);
+                }
             } else {
                 setError(texts[language].loginError);
             }
@@ -43,7 +52,7 @@ function Login({ language }) {
     };
 
     const toggleShowPassword = () => {
-        setShowPassword(!showPassword); // Funkcja do przełączania widoczności hasła
+        setShowPassword(!showPassword);
     };
 
     return (
@@ -63,7 +72,7 @@ function Login({ language }) {
                             <div className="password-container">
                                 <input
                                     type={showPassword ? 'text' : 'password'}
-                                    placeholder={'Password'}
+                                    placeholder={'Hasło'}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
