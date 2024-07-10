@@ -95,3 +95,16 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .auth-container {
+    width: 300px;
+    input {
+      width: 280px;
+    }
+
+    button {
+      width: 300px;
+    }
+  }
+}
