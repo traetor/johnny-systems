@@ -65,14 +65,14 @@ function Login({ language }) {
                             <h2>{texts[language].login}</h2>
                             <input
                                 type="email"
-                                placeholder={'Email'}
+                                placeholder={texts[language].email}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <div className="password-container">
                                 <input
                                     type={showPassword ? 'text' : 'password'}
-                                    placeholder={'Hasło'}
+                                    placeholder={texts[language].password}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />

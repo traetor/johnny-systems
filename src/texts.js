@@ -16,7 +16,11 @@ const texts = {
         accountNotActivated: 'Konto nie jest aktywowane. Sprawdź swój email, aby aktywować konto.',
         userNotFound: 'Użytkownik nie został znaleziony',
         accountActivation: 'Aktywacja konta',
-        activationInfoMessage: 'Twoje konto zostało zarejestrowane. Sprawdź swoją skrzynkę pocztową, aby aktywować konto.'
+        activationInfoMessage: 'Twoje konto zostało zarejestrowane. Sprawdź swoją skrzynkę pocztową, aby aktywować konto.',
+        username: 'Nazwa użytkownika',
+        email: 'Email',
+        password: 'Hasło',
+        confirmPassword: 'Potwierdź hasło'
     },
     en: {
         tasks: 'Tasks',
@@ -35,7 +39,11 @@ const texts = {
         accountNotActivated: 'Account is not activated. Please check your email for activation link.',
         userNotFound: 'User not found',
         accountActivation: 'Account Activation',
-        activationInfoMessage: 'Your account has been registered. Please check your email to activate your account.'
+        activationInfoMessage: 'Your account has been registered. Please check your email to activate your account.',
+        username: 'Username',
+        email: 'Email',
+        password: 'Password',
+        confirmPassword: 'Confirm Password'
     },
     de: {
         tasks: 'Aufgaben',
@@ -54,7 +62,11 @@ const texts = {
         accountNotActivated: 'Konto ist nicht aktiviert. Bitte überprüfen Sie Ihre E-Mail für den Aktivierungslink.',
         userNotFound: 'Benutzer nicht gefunden',
         accountActivation: 'Kontoaktivierung',
-        activationInfoMessage: 'Ihr Konto wurde registriert. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu aktivieren.'
+        activationInfoMessage: 'Ihr Konto wurde registriert. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu aktivieren.',
+        username: 'Benutzername',
+        email: 'E-Mail',
+        password: 'Passwort',
+        confirmPassword: 'Passwort bestätigen'
     },
 };
 
