@@ -6,6 +6,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'public'),
         filename: 'bundle.js',
+        publicPath: '/', // Bazowa ścieżka dla zasobów
     },
     module: {
         rules: [
