@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import LoginPage from './pages/LoginPage';
@@ -11,8 +11,27 @@ import PrivateRoute from './components/PrivateRoute';
 import texts from './texts';
 import './App.scss';
 
+const saveLanguageToLocalStorage = (language) => {
+    localStorage.setItem('language', language);
+};
+
+const getLanguageFromLocalStorage = () => {
+    return localStorage.getItem('language');
+};
+
+const getDefaultLanguage = () => {
+    const browserLanguage = navigator.language.split('-')[0];
+    const supportedLanguages = ['pl', 'en', 'de'];
+
+    return supportedLanguages.includes(browserLanguage) ? browserLanguage : 'en';
+};
+
 function App() {
-    const [language, setLanguage] = useState('pl');
+    const [language, setLanguage] = useState(getLanguageFromLocalStorage() || getDefaultLanguage());
+
+    useEffect(() => {
+        saveLanguageToLocalStorage(language);
+    }, [language]);
 
     const handleLanguageChange = (e) => {
         setLanguage(e.target.value);
