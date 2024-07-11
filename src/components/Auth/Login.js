@@ -35,10 +35,12 @@ function Login({ language }) {
             }
         } catch (error) {
             if (error.response) {
-                if (error.response.status === 401) {
+                if (error.response.status === 429) {
+                    setError(texts[language].rateLimitExceeded);
+                } else if (error.response.status === 401) {
                     setError(texts[language].invalidCredentials);
                 } else if (error.response.status === 403) {
-                    setError(texts[language].accountNotActivated); // Komunikat o nieaktywowanym koncie
+                    setError(texts[language].accountNotActivated);
                 } else if (error.response.status === 404) {
                     setError(texts[language].userNotFound);
                 } else {
