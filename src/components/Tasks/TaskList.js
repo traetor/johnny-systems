@@ -79,7 +79,7 @@ const TaskList = ({language}) => {
                         onDragOver={(e) => onDragOver(e)}
                         onDrop={(e) => onDrop(e, 'to_do')}
                     >
-                        <h2>{texts[language].tasksTodo}</h2>
+                        <h3>{texts[language].tasksTodo}</h3>
                         {tasks
                             .filter(task => task.status === 'to_do')
                             .map(task => (
@@ -97,7 +97,7 @@ const TaskList = ({language}) => {
                         onDragOver={(e) => onDragOver(e)}
                         onDrop={(e) => onDrop(e, 'in_progress')}
                     >
-                        <h2>{texts[language].tasksInProgress}</h2>
+                        <h3>{texts[language].tasksInProgress}</h3>
                         {tasks
                             .filter(task => task.status === 'in_progress')
                             .map(task => (
@@ -115,7 +115,7 @@ const TaskList = ({language}) => {
                         onDragOver={(e) => onDragOver(e)}
                         onDrop={(e) => onDrop(e, 'done')}
                     >
-                        <h2>{texts[language].tasksDone}</h2>
+                        <h3>{texts[language].tasksDone}</h3>
                         {tasks
                             .filter(task => task.status === 'done')
                             .map(task => (

@@ -1,12 +1,17 @@
 // components/Footer/Footer.scss
 .footer {
-  background-color: #333;
-  color: #fff;
+  background-color: #151F29;
   text-align: center;
   padding: 1rem 0;
   position: absolute;
   width: 100%;
+  z-index: 3;
   bottom: 0;
+  p {
+    margin: 0;
+    font-size: .8rem;
+    color: #959595;
+  }
 }
 
 .footer-content {

@@ -7,12 +7,22 @@ h2, p {
   color: #f9f9f9;
 }
 
+h3 {
+  color: #f9f9f9;
+  font-size: 1rem;
+}
+
 select {
   background-color: #0C0C0D;
   border-color: #0C0C0D;
   color: #f9f9f9;
+  cursor: pointer;
 }
 
 textarea {
   resize: vertical; /* Tylko pionowe rozszerzanie */
+}
+
+.d-none {
+  display: none !important;
 }
