@@ -79,7 +79,7 @@ function Login({ language }) {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                                 <button type="button" onClick={toggleShowPassword}>
-                                    {showPassword ? 'Ukryj' : 'Pokaż'}
+                                    {showPassword ? texts[language].hide : texts[language].show}
                                 </button>
                             </div>
                             <button className="button primary" type="submit">{texts[language].login}</button>

@@ -29,7 +29,9 @@ const texts = {
         passwordMismatch: 'Potwierdzenie hasła nie pasuje',
         emailExists: 'Ten email jest już zarejestrowany',
         registrationError: 'Błąd podczas rejestracji. Spróbuj ponownie później.',
-        rateLimitExceeded: 'Zbyt wiele prób logowania. Spróbuj ponownie za 15 minut.'
+        rateLimitExceeded: 'Zbyt wiele prób logowania. Spróbuj ponownie za 15 minut.',
+        show: 'Pokaż',
+        hide: 'Ukryj'
     },
     en: {
         tasks: 'Tasks',
@@ -61,7 +63,9 @@ const texts = {
         passwordMismatch: 'Password confirmation does not match',
         emailExists: 'This email is already registered',
         registrationError: 'Error during registration. Please try again later.',
-        rateLimitExceeded: 'Too many login attempts from this IP, please try again after 15 minutes.'
+        rateLimitExceeded: 'Too many login attempts from this IP, please try again after 15 minutes.',
+        show: 'Show',
+        hide: 'Hide'
     },
     de: {
         tasks: 'Aufgaben',
@@ -93,7 +97,9 @@ const texts = {
         passwordMismatch: 'Die Passwortbestätigung stimmt nicht überein',
         emailExists: 'Diese E-Mail ist bereits registriert',
         registrationError: 'Fehler bei der Registrierung. Bitte versuchen Sie es später erneut.',
-        rateLimitExceeded: 'Zu viele Anmeldeversuche von dieser IP, bitte versuchen Sie es nach 15 Minuten erneut.'
+        rateLimitExceeded: 'Zu viele Anmeldeversuche von dieser IP, bitte versuchen Sie es nach 15 Minuten erneut.',
+        show: 'Zeigen',
+        hide: 'Verbergen'
     },
 };
 

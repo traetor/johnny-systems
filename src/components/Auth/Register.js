@@ -104,7 +104,7 @@ function Register({ language }) {
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                     <button type="button" onClick={toggleShowPassword}>
-                                        {showPassword ? 'Ukryj' : 'Pokaż'}
+                                        {showPassword ? texts[language].hide : texts[language].show}
                                     </button>
                                 </div>
                                 <div className="password-container">
@@ -115,7 +115,7 @@ function Register({ language }) {
                                         onChange={(e) => setConfirmPassword(e.target.value)}
                                     />
                                     <button type="button" onClick={toggleShowConfirmPassword}>
-                                        {showConfirmPassword ? 'Ukryj' : 'Pokaż'}
+                                        {showConfirmPassword ? texts[language].hide : texts[language].show}
                                     </button>
                                 </div>
                                 <button className="button primary" type="submit">{texts[language].register}</button>
