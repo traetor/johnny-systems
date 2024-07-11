@@ -41,6 +41,12 @@ function Navbar({ language, handleLanguageChange }) {
                             <Link className="logout" to="/" onClick={logout}>{texts[language].logout}</Link>
                         </>
                     )}
+                    {!isLoggedIn && (
+                        <>
+                            <Link to="/">{texts[language].loginPage}</Link>
+                            <Link to="/register">{texts[language].registration}</Link>
+                        </>
+                    )}
                 </div>
                 <div className="nav-language-select">
                     <select value={language} onChange={handleLanguageChange}>
@@ -49,18 +55,25 @@ function Navbar({ language, handleLanguageChange }) {
                         <option value="de">Deutsch</option>
                     </select>
                 </div>
-                {isLoggedIn && (
-                    <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
-                        <div className="hamburger"></div>
-                    </div>
-                )}
+                <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+                    <div className="hamburger"></div>
+                </div>
                 <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
                     <div className="mobile-menu-links">
                         {isLoggedIn && (
                             <>
                                 <Link to="/tasks" onClick={toggleMobileMenu}>{texts[language].tasks}</Link>
                                 <Link to="/profile" onClick={toggleMobileMenu}>{texts[language].profile}</Link>
-                                <Link to="/" onClick={() => { logout(); toggleMobileMenu(); }}>{texts[language].logout}</Link>
+                                <Link to="/" onClick={() => {
+                                    logout();
+                                    toggleMobileMenu();
+                                }}>{texts[language].logout}</Link>
+                            </>
+                        )}
+                        {!isLoggedIn && (
+                            <>
+                                <Link to="/" onClick={toggleMobileMenu}>{texts[language].loginPage}</Link>
+                                <Link to="/register" onClick={toggleMobileMenu}>{texts[language].registration}</Link>
                             </>
                         )}
                     </div>

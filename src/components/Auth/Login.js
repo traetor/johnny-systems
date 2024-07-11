@@ -83,9 +83,6 @@ function Login({ language }) {
                                 </button>
                             </div>
                             <button className="button primary" type="submit">{texts[language].login}</button>
-                            <button className="button primary" type="button" onClick={() => navigate('/register')}>
-                                {texts[language].register}
-                            </button>
                             {error && <p className="error-message">{error}</p>}
                         </form>
                     </div>

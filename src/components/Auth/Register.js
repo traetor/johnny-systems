@@ -90,7 +90,7 @@ function Register({ language }) {
                             <ActivationInfo language={language} />
                         ) : (
                             <form onSubmit={handleSubmit}>
-                                <h2>{texts[language].register}</h2>
+                                <h2>{texts[language].registration}</h2>
                                 <input
                                     type="email"
                                     placeholder={texts[language].email}
@@ -130,9 +130,6 @@ function Register({ language }) {
                                 {error && <p className="error-message">{error}</p>}
                             </form>
                         )}
-                        <button className="button primary" type="button" onClick={() => navigate('/')}>
-                            {texts[language].login}
-                        </button>
                     </div>
                 </div>
             </div>
