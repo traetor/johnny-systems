@@ -12,3 +12,7 @@ select {
   border-color: #0C0C0D;
   color: #f9f9f9;
 }
+
+textarea {
+  resize: vertical; /* Tylko pionowe rozszerzanie */
+}
