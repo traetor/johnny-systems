@@ -56,7 +56,14 @@ function Register({ language }) {
                 return;
             }
 
-            // Jeśli email jest unikalny, wykonaj rejestrację
+            // Sprawdzenie unikalności nazwy użytkownika
+            const checkUsernameResponse = await axios.get(`${API_URL}/auth/check-username/${username}`);
+            if (!checkUsernameResponse.data.available) {
+                setError(texts[language].usernameExists || 'This username is already taken');
+                return;
+            }
+
+            // Jeśli email i nazwa użytkownika są unikalne, wykonaj rejestrację
             await axios.post(`${API_URL}/auth/register`, { username, email, password, language });
             setRegistered(true);
         } catch (error) {
@@ -95,6 +102,7 @@ function Register({ language }) {
                                     placeholder={texts[language].username}
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
+                                    // onBlur={handleUsernameValidation} // Dodajemy wywołanie funkcji po opuszczeniu pola
                                 />
                                 <div className="password-container">
                                     <input

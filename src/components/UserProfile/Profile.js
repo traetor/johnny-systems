@@ -70,7 +70,7 @@ function Profile() {
                             value={user.email}
                             readOnly // Make email field read-only
                         />
-                        <input type="file" onChange={handleAvatarChange}/>
+                        {/*<input type="file" onChange={handleAvatarChange}/>*/}
                         <button className="button primary" type="submit">Aktualizuj</button>
                     </form>
                 </div>

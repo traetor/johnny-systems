@@ -25,6 +25,7 @@
   padding: 10px;
   border: 1px solid #151F29;
   border-radius: 5px;
+  text-align: center;
 }
 
 .task-item {
@@ -35,6 +36,7 @@
   border-radius: 5px;
   cursor: pointer;
   user-select: none;
+  text-align: left;
 }
 
 .task-item:hover {

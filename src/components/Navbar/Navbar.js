@@ -38,7 +38,7 @@ function Navbar({ language, handleLanguageChange }) {
                         <>
                             <Link to="/tasks">{texts[language].tasks}</Link>
                             <Link to="/profile">{texts[language].profile}</Link>
-                            <Link to="/" onClick={logout}>{texts[language].logout}</Link>
+                            <Link className="logout" to="/" onClick={logout}>{texts[language].logout}</Link>
                         </>
                     )}
                 </div>
