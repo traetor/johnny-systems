@@ -33,7 +33,7 @@ function Profile() {
         const formData = new FormData();
         formData.append('avatar', avatar);
         formData.append('username', user.username);
-        formData.append('email', user.email);
+        // formData.append('email', user.email); // Email is not sent in form data
 
         try {
             const response = await axios.put(`${API_URL}/users/profile`, formData, {
@@ -64,10 +64,11 @@ function Profile() {
                             onChange={(e) => setUser({...user, username: e.target.value})}
                         />
                         <input
+                            className="email"
                             type="email"
                             placeholder="Email"
                             value={user.email}
-                            onChange={(e) => setUser({...user, email: e.target.value})}
+                            readOnly // Make email field read-only
                         />
                         <input type="file" onChange={handleAvatarChange}/>
                         <button className="button primary" type="submit">Aktualizuj</button>
