@@ -6,13 +6,13 @@ import './Tasks.scss';
 import API_URL from '../../apiConfig';
 import texts from "../../texts";
 
-const TaskList = ({language}) => {
+const TaskList = ({ language }) => {
     const [tasks, setTasks] = useState([]);
-    const [statusFilter, setStatusFilter] = useState(''); // Stan do przechowywania wybranego statusu
+    const [statusFilter, setStatusFilter] = useState('');
 
     useEffect(() => {
         fetchTasks();
-    }, [statusFilter]); // Dodanie statusFilter do zależności useEffect, aby odświeżać listę zadań po zmianie statusu
+    }, [statusFilter]);
 
     const fetchTasks = async () => {
         try {
@@ -32,7 +32,7 @@ const TaskList = ({language}) => {
     };
 
     const handleAddTask = async (newTask) => {
-        await fetchTasks()
+        await fetchTasks();
     };
 
     const handleDeleteTask = async (taskId) => {
@@ -50,7 +50,7 @@ const TaskList = ({language}) => {
                     },
                 }
             );
-            await fetchTasks();
+            await fetchTasks(); // Odśwież listę po pomyślnym zaktualizowaniu zadania
         } catch (error) {
             console.error('Error updating task status', error);
         }
@@ -88,7 +88,7 @@ const TaskList = ({language}) => {
                                     draggable
                                     onDragStart={(e) => onDragStart(e, task.id)}
                                 >
-                                    <TaskItem language={language} task={task} onDelete={handleDeleteTask}/>
+                                    <TaskItem language={language} task={task} onDelete={handleDeleteTask} onChangeStatus={handleAddTask} />
                                 </div>
                             ))}
                     </div>
@@ -106,7 +106,7 @@ const TaskList = ({language}) => {
                                     draggable
                                     onDragStart={(e) => onDragStart(e, task.id)}
                                 >
-                                    <TaskItem language={language} task={task} onDelete={handleDeleteTask}/>
+                                    <TaskItem language={language} task={task} onDelete={handleDeleteTask} onChangeStatus={handleAddTask} />
                                 </div>
                             ))}
                     </div>
@@ -124,7 +124,7 @@ const TaskList = ({language}) => {
                                     draggable
                                     onDragStart={(e) => onDragStart(e, task.id)}
                                 >
-                                    <TaskItem language={language} task={task} onDelete={handleDeleteTask}/>
+                                    <TaskItem language={language} task={task} onDelete={handleDeleteTask} onChangeStatus={handleAddTask} />
                                 </div>
                             ))}
                     </div>
