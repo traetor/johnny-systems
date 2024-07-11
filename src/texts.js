@@ -21,7 +21,14 @@ const texts = {
         username: 'Nazwa użytkownika',
         email: 'Email',
         password: 'Hasło',
-        confirmPassword: 'Potwierdź hasło'
+        confirmPassword: 'Potwierdź hasło',
+        fillAllFields: 'Proszę wypełnić wszystkie pola formularza',
+        validEmail: 'Proszę podać prawidłowy adres email',
+        passwordLength: 'Hasło powinno mieć co najmniej 8 znaków',
+        passwordSpecialChars: 'Hasło powinno zawierać co najmniej jeden znak specjalny',
+        passwordMismatch: 'Potwierdzenie hasła nie pasuje',
+        emailExists: 'Ten email jest już zarejestrowany',
+        registrationError: 'Błąd podczas rejestracji. Spróbuj ponownie później.'
     },
     en: {
         tasks: 'Tasks',
@@ -45,7 +52,14 @@ const texts = {
         username: 'Username',
         email: 'Email',
         password: 'Password',
-        confirmPassword: 'Confirm Password'
+        confirmPassword: 'Confirm Password',
+        fillAllFields: 'Please fill in all form fields',
+        validEmail: 'Please enter a valid email address',
+        passwordLength: 'Password should be at least 8 characters long',
+        passwordSpecialChars: 'Password should contain at least one special character',
+        passwordMismatch: 'Password confirmation does not match',
+        emailExists: 'This email is already registered',
+        registrationError: 'Error during registration. Please try again later.'
     },
     de: {
         tasks: 'Aufgaben',
@@ -69,7 +83,14 @@ const texts = {
         username: 'Benutzername',
         email: 'E-Mail',
         password: 'Passwort',
-        confirmPassword: 'Passwort bestätigen'
+        confirmPassword: 'Passwort bestätigen',
+        fillAllFields: 'Bitte füllen Sie alle Formularfelder aus',
+        validEmail: 'Bitte geben Sie eine gültige E-Mail-Adresse ein',
+        passwordLength: 'Das Passwort sollte mindestens 8 Zeichen lang sein',
+        passwordSpecialChars: 'Das Passwort sollte mindestens ein Sonderzeichen enthalten',
+        passwordMismatch: 'Die Passwortbestätigung stimmt nicht überein',
+        emailExists: 'Diese E-Mail ist bereits registriert',
+        registrationError: 'Fehler bei der Registrierung. Bitte versuchen Sie es später erneut.'
     },
 };
 

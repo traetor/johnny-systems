@@ -21,38 +21,47 @@ function Register({ language }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Walidacja pól formularza
         if (!username || !email || !password || !confirmPassword) {
-            setError('Proszę wypełnić wszystkie pola formularza');
+            setError(texts[language].fillAllFields || 'Please fill in all form fields');
             return;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            setError('Proszę podać poprawny adres email');
+            setError(texts[language].validEmail || 'Please enter a valid email address');
             return;
         }
 
         if (password.length < 8) {
-            setError('Hasło powinno mieć co najmniej 8 znaków');
+            setError(texts[language].passwordLength || 'Password should be at least 8 characters long');
             return;
         }
 
         if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-            setError('Hasło powinno zawierać co najmniej jeden znak specjalny');
+            setError(texts[language].passwordSpecialChars || 'Password should contain at least one special character');
             return;
         }
 
         if (password !== confirmPassword) {
-            setError('Potwierdzenie hasła nie pasuje do hasła');
+            setError(texts[language].passwordMismatch || 'Password confirmation does not match');
             return;
         }
 
         try {
-            await axios.post(`${API_URL}/auth/register`, { username, email, password });
+            // Sprawdzenie unikalności adresu email
+            const checkEmailResponse = await axios.get(`${API_URL}/auth/check-email/${email}`);
+            if (!checkEmailResponse.data.available) {
+                setError(texts[language].emailExists || 'This email is already registered');
+                return;
+            }
+
+            // Jeśli email jest unikalny, wykonaj rejestrację
+            await axios.post(`${API_URL}/auth/register`, { username, email, password, language });
             setRegistered(true);
         } catch (error) {
-            console.error('Błąd rejestracji', error);
-            setError('Błąd podczas rejestracji. Proszę spróbować ponownie później.');
+            console.error('Registration error:', error);
+            setError(texts[language].registrationError || 'Error during registration. Please try again later.');
         }
     };
 
@@ -76,16 +85,16 @@ function Register({ language }) {
                             <form onSubmit={handleSubmit}>
                                 <h2>{texts[language].register}</h2>
                                 <input
-                                    type="text"
-                                    placeholder={texts[language].username}
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                />
-                                <input
                                     type="email"
                                     placeholder={texts[language].email}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder={texts[language].username}
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
                                 />
                                 <div className="password-container">
                                     <input
