@@ -143,3 +143,9 @@
 .popup button:last-of-type:hover {
   background-color: #c82333;
 }
+
+@media (max-width: 500px) {
+  .task-columns {
+    flex-direction: column;
+  }
+}

@@ -1,25 +1,100 @@
 .navbar {
-  padding: 10px;
+  padding: 10px 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   position: fixed;
   width: 100%;
   z-index: 3;
+  background-color: transparent;
+  color: #fff;
+  transition: background-color 0.3s ease-in-out;
 
-  a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
 
-    &:hover {
-      background-color: #444;
+  .nav-links {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: #151F29;
+      }
     }
   }
-}
 
-@media (max-width: 768px) {
-  a {
-    font-size: 12px;
+  .nav-language-select {
+    margin-right: 10px; // Dodaj odstęp między selectem a hamburgerem na większych ekranach
+  }
+
+  .mobile-menu-toggle {
+    display: none; // Ukryj domyślnie dla większych ekranów
+    cursor: pointer;
+    padding: 10px;
+
+    .hamburger {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 5px 0;
+    }
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 60px; // Wysunięcie poniżej paska nawigacji
+    right: 0;
+    background-color: #151F29;
+    width: 200px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+
+    &.open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: #151F29;
+        }
+      }
+    }
+  }
+
+  &.sticky {
+    background-color: #151F29; // Nowe tło nawigacji po przewinięciu
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Dodatkowy cień, jeśli potrzebny
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; // Ukryj główne menu na mniejszych ekranach
+    }
+
+    .nav-language-select {
+      margin-right: 0; // Zresetuj margines dla selecta na mniejszych ekranach
+    }
+
+    .mobile-menu-toggle {
+      display: block; // Pokaż przycisk hamburgera
+    }
   }
 }

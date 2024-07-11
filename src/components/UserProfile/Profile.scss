@@ -12,7 +12,7 @@
 
   input {
     display: block;
-    width: 100%;
+    width: 578px;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #0C0C0D;
@@ -46,5 +46,16 @@
     object-fit: cover;
     margin: 10px auto;
     display: block;
+  }
+}
+
+@media (max-width: 500px) {
+  .profile-container {
+    width: 100%;
+    max-width: 300px;
+    input {
+      width: 100%;
+      max-width: 278px;
+    }
   }
 }
