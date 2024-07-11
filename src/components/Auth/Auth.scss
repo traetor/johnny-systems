@@ -96,6 +96,9 @@ $background-overlay: rgba(0, 0, 0, 0.7);
       font-size: 2rem;
     }
   }
+  &.activate {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 1300px) {

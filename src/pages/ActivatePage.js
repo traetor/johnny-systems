@@ -14,22 +14,22 @@ function ActivatePage({ language }) {
             try {
                 const response = await axios.get(`${API_URL}/auth/activate/${token}`);
                 setMessage(response.data.message);
-                setTimeout(() => {
-                    navigate('/');
-                }, 3000); // Przekierowanie po 3 sekundach
             } catch (error) {
-                setMessage('Activation failed. Please try again later.');
+                setMessage(texts[language].activationErrorMessage); // Ustawienie komunikatu błędu z tekstów
             }
         };
 
         activateAccount();
-    }, [token, navigate]);
+    }, [token, navigate, language]);
 
     return (
         <div className="intro">
-            <div className="main-container intro-content">
+            <div className="main-container intro-content activate">
                 <h2>{texts[language].accountActivation}</h2>
                 <p>{message}</p>
+                <button className="button primary" type="button" onClick={() => navigate('/')}>
+                    {texts[language].login}
+                </button>
             </div>
         </div>
     );
