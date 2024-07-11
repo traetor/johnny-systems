@@ -64,7 +64,7 @@ function Login({ language }) {
                 <div className="right-section">
                     <div className="auth-container">
                         <form onSubmit={handleSubmit}>
-                            <h2>{texts[language].login}</h2>
+                            <h2>{texts[language].loginPage}</h2>
                             <input
                                 type="email"
                                 placeholder={texts[language].email}

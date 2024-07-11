@@ -2,8 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import './Tasks.scss';
 import API_URL from '../../apiConfig';
+import texts from "../../texts";
 
-const TaskItem = ({ task, onDelete }) => {
+const TaskItem = ({ task, onDelete, language }) => {
     const handleDelete = async () => {
         try {
             await axios.delete(`${API_URL}/tasks/${task.id}`, {
@@ -20,7 +21,7 @@ const TaskItem = ({ task, onDelete }) => {
     return (
         <div className="task-item">
             <h3>{task.title}</h3>
-            <button onClick={() => handleDelete()}>Delete</button>
+            <button onClick={() => handleDelete()}>{texts[language].delete}</button>
         </div>
     );
 };

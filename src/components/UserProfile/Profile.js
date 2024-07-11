@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Profile.scss';
 import API_URL from '../../apiConfig';
+import texts from "../../texts";
 
-function Profile() {
+function Profile({language}) {
     const [user, setUser] = useState({});
     const [avatar, setAvatar] = useState(null);
 
@@ -53,25 +54,25 @@ function Profile() {
             <div className="intro-content container">
                 <div className="profile-container">
                     <form onSubmit={handleProfileUpdate}>
-                        <h2>Profile</h2>
+                        <h2>{texts[language].userProfile}</h2>
                         {user.avatar && (
                             <img src={user.avatar} alt="Avatar" className="avatar-preview"/>
                         )}
                         <input
                             type="text"
-                            placeholder="Username"
+                            placeholder={texts[language].username}
                             value={user.username}
                             onChange={(e) => setUser({...user, username: e.target.value})}
                         />
                         <input
                             className="email"
                             type="email"
-                            placeholder="Email"
+                            placeholder={texts[language].email}
                             value={user.email}
                             readOnly // Make email field read-only
                         />
                         {/*<input type="file" onChange={handleAvatarChange}/>*/}
-                        <button className="button primary" type="submit">Aktualizuj</button>
+                        <button className="button primary" type="submit">{texts[language].update}</button>
                     </form>
                 </div>
             </div>

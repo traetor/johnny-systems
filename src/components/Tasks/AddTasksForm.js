@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import API_URL from '../../apiConfig';
+import texts from "../../texts";
 
-function AddTaskForm({ onAdd }) {
+function AddTaskForm({ onAdd, language }) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
@@ -27,18 +28,18 @@ function AddTaskForm({ onAdd }) {
         <form className="add-task-form" onSubmit={handleSubmit}>
             <input
                 type="text"
-                placeholder="Title"
+                placeholder={texts[language].taskTitle}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
             />
             <textarea
-                placeholder="Description"
+                placeholder={texts[language].taskDescription}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
             />
-            <button className="button primary" type="submit">Add Task</button>
+            <button className="button primary" type="submit">{texts[language].addTask}</button>
         </form>
     );
 }

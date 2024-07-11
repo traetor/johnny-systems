@@ -4,8 +4,9 @@ import TaskItem from './TaskItem';
 import AddTaskForm from "./AddTasksForm";
 import './Tasks.scss';
 import API_URL from '../../apiConfig';
+import texts from "../../texts";
 
-const TaskList = () => {
+const TaskList = ({language}) => {
     const [tasks, setTasks] = useState([]);
     const [statusFilter, setStatusFilter] = useState(''); // Stan do przechowywania wybranego statusu
 
@@ -71,14 +72,14 @@ const TaskList = () => {
     return (
         <div className="intro">
             <div className="container intro-content tasks-container">
-                <AddTaskForm onAdd={handleAddTask}/>
+                <AddTaskForm onAdd={handleAddTask} language={language} />
                 <div className="task-columns">
                     <div
                         className="task-column"
                         onDragOver={(e) => onDragOver(e)}
                         onDrop={(e) => onDrop(e, 'to_do')}
                     >
-                        <h2>To Do</h2>
+                        <h2>{texts[language].tasksTodo}</h2>
                         {tasks
                             .filter(task => task.status === 'to_do')
                             .map(task => (
@@ -87,7 +88,7 @@ const TaskList = () => {
                                     draggable
                                     onDragStart={(e) => onDragStart(e, task.id)}
                                 >
-                                    <TaskItem task={task} onDelete={handleDeleteTask}/>
+                                    <TaskItem language={language} task={task} onDelete={handleDeleteTask}/>
                                 </div>
                             ))}
                     </div>
@@ -96,7 +97,7 @@ const TaskList = () => {
                         onDragOver={(e) => onDragOver(e)}
                         onDrop={(e) => onDrop(e, 'in_progress')}
                     >
-                        <h2>In Progress</h2>
+                        <h2>{texts[language].tasksInProgress}</h2>
                         {tasks
                             .filter(task => task.status === 'in_progress')
                             .map(task => (
@@ -105,7 +106,7 @@ const TaskList = () => {
                                     draggable
                                     onDragStart={(e) => onDragStart(e, task.id)}
                                 >
-                                    <TaskItem task={task} onDelete={handleDeleteTask}/>
+                                    <TaskItem language={language} task={task} onDelete={handleDeleteTask}/>
                                 </div>
                             ))}
                     </div>
@@ -114,7 +115,7 @@ const TaskList = () => {
                         onDragOver={(e) => onDragOver(e)}
                         onDrop={(e) => onDrop(e, 'done')}
                     >
-                        <h2>Done</h2>
+                        <h2>{texts[language].tasksDone}</h2>
                         {tasks
                             .filter(task => task.status === 'done')
                             .map(task => (
@@ -123,7 +124,7 @@ const TaskList = () => {
                                     draggable
                                     onDragStart={(e) => onDragStart(e, task.id)}
                                 >
-                                    <TaskItem task={task} onDelete={handleDeleteTask}/>
+                                    <TaskItem language={language} task={task} onDelete={handleDeleteTask}/>
                                 </div>
                             ))}
                     </div>
