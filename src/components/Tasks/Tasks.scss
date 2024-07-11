@@ -24,8 +24,16 @@
   background-color: #151F29;
   padding: 10px;
   border: 1px solid #151F29;
-  border-radius: 5px;
+  border-radius: 8px;
   text-align: center;
+}
+
+.task-event {
+  color: #FFF;
+  font-size: 1.2rem;
+  position: absolute;
+  right: 7px;
+  top: 0;
 }
 
 .task-item {
@@ -33,10 +41,14 @@
   border: 1px solid #0C1015;
   padding: 10px;
   margin-bottom: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   user-select: none;
   text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
 }
 
 .task-item:hover {
@@ -47,7 +59,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 200px;
+  max-width: 180px;
+  margin: 0;
 }
 
 .task-item button {

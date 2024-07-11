@@ -22,6 +22,7 @@ const TaskItem = ({ task, onDelete, language }) => {
         <div className="task-item">
             <h3>{task.title}</h3>
             <button className="d-none" onClick={() => handleDelete()}>{texts[language].delete}</button>
+            <div className="task-event">...</div>
         </div>
     );
 };
