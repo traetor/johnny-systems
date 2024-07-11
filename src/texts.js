@@ -15,6 +15,8 @@ const texts = {
         welcomeDescription: 'Zarządzaj wszystkim w jednym miejscu, dostosowanym do każdego rodzaju pracy.',
         accountNotActivated: 'Konto nie jest aktywowane. Sprawdź swój email, aby aktywować konto.',
         userNotFound: 'Użytkownik nie został znaleziony',
+        accountActivation: 'Aktywacja konta',
+        activationInfoMessage: 'Twoje konto zostało zarejestrowane. Sprawdź swoją skrzynkę pocztową, aby aktywować konto.'
     },
     en: {
         tasks: 'Tasks',
@@ -32,6 +34,8 @@ const texts = {
         welcomeDescription: 'Manage everything in one place, tailored for any type of work.',
         accountNotActivated: 'Account is not activated. Please check your email for activation link.',
         userNotFound: 'User not found',
+        accountActivation: 'Account Activation',
+        activationInfoMessage: 'Your account has been registered. Please check your email to activate your account.'
     },
     de: {
         tasks: 'Aufgaben',
@@ -49,6 +53,8 @@ const texts = {
         welcomeDescription: 'Verwalten Sie alles an einem Ort, maßgeschneidert für jede Art von Arbeit.',
         accountNotActivated: 'Konto ist nicht aktiviert. Bitte überprüfen Sie Ihre E-Mail für den Aktivierungslink.',
         userNotFound: 'Benutzer nicht gefunden',
+        accountActivation: 'Kontoaktivierung',
+        activationInfoMessage: 'Ihr Konto wurde registriert. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu aktivieren.'
     },
 };
 
