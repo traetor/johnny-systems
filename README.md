@@ -1,8 +1,5 @@
 # Task Management Application
 
-## Api docs
-https://johnny-systems-backend.vercel.app/api-docs/#/
-
 ## Overview
 
 This project is a task management application that allows users to create, view, update, and delete tasks. It includes features for managing task statuses and provides a responsive design for a seamless user experience across different devices.
@@ -19,17 +16,20 @@ This project is a task management application that allows users to create, view,
 ## Technologies Used
 
 - **Frontend:**
-    - React
-    - SCSS
+  - React
+  - SCSS
 - **Backend:**
-    - Express.js (Assumed based on typical API configurations)
-    - MongoDB (Assumed based on typical task management application stack)
+  - Node.js
+  - Express.js
+  - PostgreSQL
 - **Authentication:**
-    - JWT (JSON Web Tokens)
+  - JWT (JSON Web Tokens)
 - **Styling:**
-    - SCSS
+  - SCSS
 
 ## Project Structure
+
+The project structure is organized as follows:
 
 
 ## Component Breakdown
@@ -76,6 +76,10 @@ The base URL for the API is defined in `apiConfig.js`.
 - **POST /tasks**: Creates a new task.
 - **PUT /tasks/:id**: Updates a task by ID.
 - **DELETE /tasks/:id**: Deletes a task by ID.
+- **POST /auth/register**: Registers a new user.
+- **POST /auth/login**: Authenticates a user and returns a token.
+- **GET /auth/check-email/:email**: Checks if an email is already in use.
+- **GET /auth/check-username/:username**: Checks if a username is already in use.
 
 ## Authentication
 
@@ -85,6 +89,29 @@ The application uses JWT for authentication. The token is stored in `localStorag
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/yourusername/task-management-app.git
-   cd task-management-app
+   git clone https://github.com/traetor/johnny-systems-backend.git
 
+2. **Install dependencies for the backend:**
+   ```sh
+   npm install
+
+3. **Set up environment variables:**
+   ```sh
+   Create a .env file in the backend directory with the following content
+   DB_HOST=
+   DB_USER=
+   DB_PASSWORD=
+   DB_NAME=
+   DB_PORT=
+   JWT_SECRET=
+   EMAIL=
+   EMAIL_PASSWORD=
+   FRONTEND_URL=
+
+4. **Run the backend server:**
+   ```sh
+   npm start
+
+5. **Access the application:**
+   ```sh
+   Open your browser and go to http://localhost:3001.
