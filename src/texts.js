@@ -43,6 +43,7 @@ const texts = {
         taskDescription: 'Opis zadania',
         userProfile: 'Profil użytkownika',
         update: 'Aktualizuj',
+        loading: 'Ładowanie...',
         registration: 'Rejestracja'
     },
     en: {
@@ -89,6 +90,7 @@ const texts = {
         taskDescription: 'Task Description',
         userProfile: 'User Profile',
         update: 'Update',
+        loading: 'Loading...',
         registration: 'Registration'
     },
     de: {
@@ -135,6 +137,7 @@ const texts = {
         taskDescription: 'Aufgabenbeschreibung',
         userProfile: 'Benutzerprofil',
         update: 'Aktualisieren',
+        loading: 'Wird geladen...',
         registration: 'Registrierung'
     }
 };

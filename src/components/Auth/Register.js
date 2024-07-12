@@ -16,6 +16,7 @@ function Register({ language }) {
     const [registered, setRegistered] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -48,6 +49,8 @@ function Register({ language }) {
             return;
         }
 
+        setLoading(true); // Ustawia stan ładowania na true
+
         try {
             // Sprawdzenie unikalności adresu email
             const checkEmailResponse = await axios.get(`${API_URL}/auth/check-email/${email}`);
@@ -69,6 +72,8 @@ function Register({ language }) {
         } catch (error) {
             console.error('Registration error:', error);
             setError(texts[language].registrationError || 'Error during registration. Please try again later.');
+        } finally {
+            setLoading(false); // Resetuje stan ładowania po zakończeniu requestu
         }
     };
 
@@ -96,13 +101,14 @@ function Register({ language }) {
                                     placeholder={texts[language].email}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
+                                    disabled={loading} // Blokuje pole w czasie ładowania
                                 />
                                 <input
                                     type="text"
                                     placeholder={texts[language].username}
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
-                                    // onBlur={handleUsernameValidation} // Dodajemy wywołanie funkcji po opuszczeniu pola
+                                    disabled={loading} // Blokuje pole w czasie ładowania
                                 />
                                 <div className="password-container">
                                     <input
@@ -110,8 +116,9 @@ function Register({ language }) {
                                         placeholder={texts[language].password}
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
+                                        disabled={loading} // Blokuje pole w czasie ładowania
                                     />
-                                    <button type="button" onClick={toggleShowPassword}>
+                                    <button type="button" onClick={toggleShowPassword} disabled={loading}>
                                         {showPassword ? texts[language].hide : texts[language].show}
                                     </button>
                                 </div>
@@ -121,12 +128,15 @@ function Register({ language }) {
                                         placeholder={texts[language].confirmPassword}
                                         value={confirmPassword}
                                         onChange={(e) => setConfirmPassword(e.target.value)}
+                                        disabled={loading} // Blokuje pole w czasie ładowania
                                     />
-                                    <button type="button" onClick={toggleShowConfirmPassword}>
+                                    <button type="button" onClick={toggleShowConfirmPassword} disabled={loading}>
                                         {showConfirmPassword ? texts[language].hide : texts[language].show}
                                     </button>
                                 </div>
-                                <button className="button primary" type="submit">{texts[language].register}</button>
+                                <button className="button primary" type="submit" disabled={loading}>
+                                    {loading ? texts[language].loading : texts[language].register}
+                                </button>
                                 {error && <p className="error-message">{error}</p>}
                             </form>
                         )}

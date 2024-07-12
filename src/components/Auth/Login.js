@@ -14,6 +14,7 @@ function Login({ language }) {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -23,6 +24,8 @@ function Login({ language }) {
             setError(texts[language].error);
             return;
         }
+
+        setLoading(true); // Ustawia stan ładowania na true
 
         try {
             const response = await axios.post(`${API_URL}/auth/login`, { email, password });
@@ -50,6 +53,8 @@ function Login({ language }) {
                 setError(texts[language].loginError);
             }
             console.error('Błąd logowania', error);
+        } finally {
+            setLoading(false); // Resetuje stan ładowania po zakończeniu requestu
         }
     };
 
@@ -70,6 +75,7 @@ function Login({ language }) {
                                 placeholder={texts[language].email}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                disabled={loading} // Blokuje pole w czasie ładowania
                             />
                             <div className="password-container">
                                 <input
@@ -77,12 +83,15 @@ function Login({ language }) {
                                     placeholder={texts[language].password}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    disabled={loading} // Blokuje pole w czasie ładowania
                                 />
-                                <button type="button" onClick={toggleShowPassword}>
+                                <button type="button" onClick={toggleShowPassword} disabled={loading}>
                                     {showPassword ? texts[language].hide : texts[language].show}
                                 </button>
                             </div>
-                            <button className="button primary" type="submit">{texts[language].login}</button>
+                            <button className="button primary" type="submit" disabled={loading}>
+                                {loading ? texts[language].loading : texts[language].login}
+                            </button>
                             {error && <p className="error-message">{error}</p>}
                         </form>
                     </div>
