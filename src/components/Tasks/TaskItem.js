@@ -72,12 +72,12 @@ const TaskItem = ({ task, onDelete, language, onChangeStatus }) => {
                         <p>{task.description}</p>
                         <div className="status-dropdown">
                             <select onChange={(e) => handleStatusChange(e.target.value)} value={task.status}>
-                                <option value="to_do">To Do</option>
-                                <option value="in_progress">In Progress</option>
-                                <option value="done">Done</option>
+                                <option value="to_do">{texts[language].tasksTodo}</option>
+                                <option value="in_progress">{texts[language].tasksInProgress}</option>
+                                <option value="done">{texts[language].tasksDone}</option>
                             </select>
                         </div>
-                        <button className="button primary delete-button" onClick={handleDelete}>Delete Task</button>
+                        <button className="button primary delete-button" onClick={handleDelete}>{texts[language].deleteTask}</button>
                     </div>
                 </>
             )}

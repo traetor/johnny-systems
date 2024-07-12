@@ -45,6 +45,10 @@ const texts = {
         update: 'Aktualizuj',
         loading: 'Ładowanie...',
         addTaskError: 'Błąd dodawania zadania. Spróbuj ponownie później.',
+        deleteTask: 'Usuń zadanie',
+        languagePolish: 'Polski',
+        languageEnglish: 'English',
+        languageGerman: 'Deutsch',
         registration: 'Rejestracja'
     },
     en: {
@@ -93,6 +97,10 @@ const texts = {
         update: 'Update',
         loading: 'Loading...',
         addTaskError: 'Error adding task. Please try again later.',
+        deleteTask: 'Delete Task',
+        languagePolish: 'Polski',
+        languageEnglish: 'English',
+        languageGerman: 'Deutsch',
         registration: 'Registration'
     },
     de: {
@@ -141,6 +149,10 @@ const texts = {
         update: 'Aktualisieren',
         loading: 'Wird geladen...',
         addTaskError: 'Fehler beim Hinzufügen der Aufgabe. Bitte versuchen Sie es später erneut.',
+        deleteTask: 'Aufgabe löschen',
+        languagePolish: 'Polski',
+        languageEnglish: 'English',
+        languageGerman: 'Deutsch',
         registration: 'Registrierung'
     }
 };

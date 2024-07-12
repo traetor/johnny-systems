@@ -50,9 +50,9 @@ function Navbar({ language, handleLanguageChange }) {
                 </div>
                 <div className="nav-language-select">
                     <select value={language} onChange={handleLanguageChange}>
-                        <option value="pl">Polski</option>
-                        <option value="en">English</option>
-                        <option value="de">Deutsch</option>
+                        <option value="pl">{texts[language].languagePolish}</option>
+                        <option value="en">{texts[language].languageEnglish}</option>
+                        <option value="de">{texts[language].languageGerman}</option>
                     </select>
                 </div>
                 <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
