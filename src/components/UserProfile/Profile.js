@@ -7,6 +7,8 @@ import texts from "../../texts";
 function Profile({language}) {
     const [user, setUser] = useState({});
     const [avatar, setAvatar] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -31,10 +33,12 @@ function Profile({language}) {
 
     const handleProfileUpdate = async (e) => {
         e.preventDefault();
+        setLoading(true); // Ustawia stan ładowania na true
+        setSuccessMessage(''); // Czyści poprzedni komunikat sukcesu
+
         const formData = new FormData();
         formData.append('avatar', avatar);
         formData.append('username', user.username);
-        // formData.append('email', user.email); // Email is not sent in form data
 
         try {
             const response = await axios.put(`${API_URL}/users/profile`, formData, {
@@ -42,10 +46,12 @@ function Profile({language}) {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
-            // Update user profile after successful update
             setUser(response.data);
+            setSuccessMessage(texts[language].profileUpdated); // Ustawia komunikat o sukcesie
         } catch (error) {
             console.error('Error updating profile', error);
+        } finally {
+            setLoading(false); // Resetuje stan ładowania po zakończeniu requestu
         }
     };
 
@@ -63,16 +69,20 @@ function Profile({language}) {
                             placeholder={texts[language].username}
                             value={user.username}
                             onChange={(e) => setUser({...user, username: e.target.value})}
+                            disabled={loading} // Blokuje pole w czasie ładowania
                         />
                         <input
                             className="email"
                             type="email"
                             placeholder={texts[language].email}
                             value={user.email}
-                            readOnly // Make email field read-only
+                            readOnly // Email jest tylko do odczytu
                         />
-                        {/*<input type="file" onChange={handleAvatarChange}/>*/}
-                        <button className="button primary" type="submit">{texts[language].update}</button>
+                        {/*<input type="file" onChange={handleAvatarChange} disabled={loading}/>*/}
+                        <button className="button primary" type="submit" disabled={loading}>
+                            {loading ? texts[language].loading : texts[language].update}
+                        </button>
+                        {successMessage && <p className="success-message">{successMessage}</p>}
                     </form>
                 </div>
             </div>
