@@ -230,3 +230,11 @@ $popup-border: #959595;
   background: $overlay-background;
   z-index: 99;
 }
+
+@media (max-width: 500px) {
+  .task-column {
+    &:last-child {
+      margin-bottom: 75px;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import ProfilePage from './pages/ProfilePage';
 import ActivatePage from './pages/ActivatePage';
 import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import texts from './texts';
 import './App.scss';
 
@@ -42,6 +43,7 @@ function App() {
         <AuthProvider>
             <div className="app-container">
                 <Navbar language={language} handleLanguageChange={handleLanguageChange} />
+                <ScrollToTop /> {/* Dodaj ScrollToTop tutaj */}
                 <Routes>
                     <Route path="/" element={<LoginPage language={language} />} />
                     <Route path="/register" element={<RegisterPage language={language} />} />

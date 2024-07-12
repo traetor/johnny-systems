@@ -57,7 +57,7 @@ function Profile({language}) {
 
     return (
         <div className="intro">
-            <div className="intro-content container">
+            <div className="intro-content container profile">
                 <div className="profile-container">
                     <form onSubmit={handleProfileUpdate}>
                         <h2>{texts[language].userProfile}</h2>
