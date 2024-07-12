@@ -51,6 +51,7 @@ function AddTaskForm({ onAdd, language }) {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 disabled={loading} // Blokuje pole w czasie ładowania
+                rows={4}
             />
             <button className="button primary" type="submit" disabled={loading}>
                 {loading ? texts[language].loading : texts[language].addTask}

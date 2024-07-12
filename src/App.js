@@ -47,8 +47,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LoginPage language={language} />} />
                     <Route path="/register" element={<RegisterPage language={language} />} />
-                    <Route path="/tasks" element={<TaskPage language={language} />} />
-                    <Route path="/profile" element={<ProfilePage language={language} />} />
+                    <Route path="/tasks" element={<PrivateRoute><TaskPage language={language} /></PrivateRoute>} />
+                    <Route path="/profile" element={<PrivateRoute><ProfilePage language={language} /></PrivateRoute>} />
                     <Route path="/activate/:token" element={<ActivatePage language={language} />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>

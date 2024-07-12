@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Auth.scss';
 import { useNavigate } from 'react-router-dom';
@@ -9,13 +9,18 @@ import texts from "../../texts";
 import "./Password.scss";
 
 function Login({ language }) {
-    const { login } = useAuth();
+    const { login, logout } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Usuń sesję przy wejściu na stronę logowania
+        logout();
+    }, [logout]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,7 +37,6 @@ function Login({ language }) {
 
             if (response.status === 200) {
                 const { token } = response.data;
-                localStorage.setItem('token', token);
                 login(token);
                 navigate('/tasks');
             }

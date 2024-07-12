@@ -8,6 +8,7 @@ function Profile({language}) {
     const [user, setUser] = useState({});
     const [avatar, setAvatar] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [initialLoading, setInitialLoading] = useState(true); // Dodaj stan dla początkowego ładowania
     const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
@@ -21,6 +22,8 @@ function Profile({language}) {
                 setUser(response.data);
             } catch (error) {
                 console.error('Error fetching profile', error);
+            } finally {
+                setInitialLoading(false); // Resetuje stan początkowego ładowania po zakończeniu requesta
             }
         };
 
@@ -51,7 +54,7 @@ function Profile({language}) {
         } catch (error) {
             console.error('Error updating profile', error);
         } finally {
-            setLoading(false); // Resetuje stan ładowania po zakończeniu requestu
+            setLoading(false); // Resetuje stan ładowania po zakończeniu requesta
         }
     };
 
@@ -69,7 +72,7 @@ function Profile({language}) {
                             placeholder={texts[language].username}
                             value={user.username}
                             onChange={(e) => setUser({...user, username: e.target.value})}
-                            disabled={loading} // Blokuje pole w czasie ładowania
+                            disabled={loading || initialLoading} // Blokuje pole w czasie ładowania
                         />
                         <input
                             className="email"
@@ -78,8 +81,13 @@ function Profile({language}) {
                             value={user.email}
                             readOnly // Email jest tylko do odczytu
                         />
-                        {/*<input type="file" onChange={handleAvatarChange} disabled={loading}/>*/}
-                        <button className="button primary" type="submit" disabled={loading}>
+                        <input
+                            className="d-none"
+                            type="file"
+                            onChange={handleAvatarChange}
+                            disabled={loading || initialLoading} // Blokuje pole w czasie ładowania
+                        />
+                        <button className="button primary" type="submit" disabled={loading || initialLoading}>
                             {loading ? texts[language].loading : texts[language].update}
                         </button>
                         {successMessage && <p className="success-message">{successMessage}</p>}
