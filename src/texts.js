@@ -44,6 +44,7 @@ const texts = {
         userProfile: 'Profil użytkownika',
         update: 'Aktualizuj',
         loading: 'Ładowanie...',
+        addTaskError: 'Błąd dodawania zadania. Spróbuj ponownie później.',
         registration: 'Rejestracja'
     },
     en: {
@@ -91,6 +92,7 @@ const texts = {
         userProfile: 'User Profile',
         update: 'Update',
         loading: 'Loading...',
+        addTaskError: 'Error adding task. Please try again later.',
         registration: 'Registration'
     },
     de: {
@@ -138,6 +140,7 @@ const texts = {
         userProfile: 'Benutzerprofil',
         update: 'Aktualisieren',
         loading: 'Wird geladen...',
+        addTaskError: 'Fehler beim Hinzufügen der Aufgabe. Bitte versuchen Sie es später erneut.',
         registration: 'Registrierung'
     }
 };
