@@ -15,6 +15,7 @@ function Login({ language }) {
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [resendLinkVisible, setResendLinkVisible] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -48,6 +49,7 @@ function Login({ language }) {
                     setError(texts[language].invalidCredentials);
                 } else if (error.response.status === 403) {
                     setError(texts[language].accountNotActivated);
+                    setResendLinkVisible(true);
                 } else if (error.response.status === 404) {
                     setError(texts[language].userNotFound);
                 } else {
@@ -61,6 +63,41 @@ function Login({ language }) {
             setLoading(false); // Resetuje stan ładowania po zakończeniu requestu
         }
     };
+
+    const handleResendActivation = async () => {
+        setLoading(true);
+        setError('');
+
+        try {
+            const response = await axios.post(`${API_URL}/auth/resend-activation`, { email });
+            if (response.status === 200) {
+                setError(texts[language].activationLinkResent);
+                setResendLinkVisible(false);
+            }
+        } catch (error) {
+            console.error('Error resending activation email', error);
+            setError(texts[language].activationLinkError);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (error.includes('<a href="#" id="resend-link">')) {
+            const resendLink = document.getElementById('resend-link');
+            if (resendLink) {
+                resendLink.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    try {
+                        await axios.post(`${API_URL}/auth/resend-activation`, { email });
+                        setError(texts[language].activationLinkResent);
+                    } catch (err) {
+                        setError(texts[language].activationLinkError);
+                    }
+                });
+            }
+        }
+    }, [error, language, email]);
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -96,7 +133,7 @@ function Login({ language }) {
                             <button className="button primary" type="submit" disabled={loading}>
                                 {loading ? texts[language].loading : texts[language].login}
                             </button>
-                            {error && <p className="error-message">{error}</p>}
+                            {error && <div className="error-message" dangerouslySetInnerHTML={{ __html: error }} />}
                         </form>
                     </div>
                 </div>

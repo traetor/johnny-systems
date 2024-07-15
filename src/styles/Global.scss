@@ -8,7 +8,7 @@
   }
 }
 
-h2, p {
+h2, p, a {
   color: #f9f9f9;
 }
 
@@ -34,4 +34,11 @@ textarea {
 
 .error-message, .success-message {
   font-size: .7rem;
+  color: #f9f9f9;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
 }

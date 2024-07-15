@@ -14,7 +14,7 @@ const texts = {
         profileUpdated: 'Profil zaktualizowany pomyślnie',
         welcome: 'Wszystko w jednej aplikacji, dla efektywnej pracy',
         welcomeDescription: 'Zarządzaj wszystkim w jednym miejscu, dostosowanym do każdego rodzaju pracy.',
-        accountNotActivated: 'Konto nie jest aktywowane. Sprawdź swój email, aby aktywować konto.',
+        accountNotActivated: 'Konto nie jest aktywowane. Wyślij ponownie <a href="#" id="resend-link">link aktywacyjny</a>',
         userNotFound: 'Użytkownik nie został znaleziony',
         accountActivation: 'Aktywacja konta',
         activationInfoMessage: 'Twoje konto zostało zarejestrowane. Sprawdź swoją skrzynkę pocztową, aby aktywować konto.',
@@ -49,7 +49,10 @@ const texts = {
         languagePolish: 'Polski',
         languageEnglish: 'English',
         languageGerman: 'Deutsch',
-        registration: 'Rejestracja'
+        registration: 'Rejestracja',
+        activationLinkResent: 'Nowy link aktywacyjny został wysłany na twój email.',
+        activationLinkError: 'Błąd wysyłania linku aktywacyjnego. Spróbuj ponownie później.',
+        showPassword: 'Pokaż hasło'
     },
     en: {
         tasks: 'Tasks',
@@ -66,7 +69,7 @@ const texts = {
         profileUpdated: 'Profile updated successfully',
         welcome: 'The everything app, for effective work',
         welcomeDescription: 'Manage everything in one place, tailored for any type of work.',
-        accountNotActivated: 'Account is not activated. Please check your email for activation link.',
+        accountNotActivated: 'Account is not activated. Resend <a href="#" id="resend-link">activation link</a>',
         userNotFound: 'User not found',
         accountActivation: 'Account Activation',
         activationInfoMessage: 'Your account has been registered. Please check your email to activate your account.',
@@ -101,7 +104,10 @@ const texts = {
         languagePolish: 'Polski',
         languageEnglish: 'English',
         languageGerman: 'Deutsch',
-        registration: 'Registration'
+        registration: 'Registration',
+        activationLinkResent: 'A new activation link has been sent to your email.',
+        activationLinkError: 'Error sending activation link. Please try again later.',
+        showPassword: 'Show password'
     },
     de: {
         tasks: 'Aufgaben',
@@ -118,7 +124,7 @@ const texts = {
         profileUpdated: 'Profil erfolgreich aktualisiert',
         welcome: 'Alles in einer App, für effektive Arbeit',
         welcomeDescription: 'Verwalten Sie alles an einem Ort, maßgeschneidert für jede Art von Arbeit.',
-        accountNotActivated: 'Konto ist nicht aktiviert. Bitte überprüfen Sie Ihre E-Mail für den Aktivierungslink.',
+        accountNotActivated: 'Konto ist nicht aktiviert. Erneut senden <a href="#" id="resend-link">Aktivierungslink</a>',
         userNotFound: 'Benutzer nicht gefunden',
         accountActivation: 'Kontoaktivierung',
         activationInfoMessage: 'Ihr Konto wurde registriert. Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto zu aktivieren.',
@@ -153,7 +159,10 @@ const texts = {
         languagePolish: 'Polski',
         languageEnglish: 'English',
         languageGerman: 'Deutsch',
-        registration: 'Registrierung'
+        registration: 'Registrierung',
+        activationLinkResent: 'Ein neuer Aktivierungslink wurde an Ihre E-Mail gesendet.',
+        activationLinkError: 'Fehler beim Senden des Aktivierungslinks. Bitte versuchen Sie es später erneut.',
+        showPassword: 'Passwort anzeigen'
     }
 };
 
