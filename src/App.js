@@ -10,7 +10,7 @@ import ActivatePage from './pages/ActivatePage';
 import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-import texts from './texts';
+import NoteListPage from './pages/NoteListPage';
 import './App.scss';
 
 const saveLanguageToLocalStorage = (language) => {
@@ -50,6 +50,7 @@ function App() {
                     <Route path="/tasks" element={<PrivateRoute><TaskPage language={language} /></PrivateRoute>} />
                     <Route path="/profile" element={<PrivateRoute><ProfilePage language={language} /></PrivateRoute>} />
                     <Route path="/activate/:token" element={<ActivatePage language={language} />} />
+                    <Route path="/notes" element={<PrivateRoute><NoteListPage language={language} /></PrivateRoute>} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 <Footer language={language} />

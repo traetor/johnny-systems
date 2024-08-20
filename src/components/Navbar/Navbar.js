@@ -37,6 +37,7 @@ function Navbar({ language, handleLanguageChange }) {
                     {isLoggedIn && (
                         <>
                             <Link to="/tasks">{texts[language].tasks}</Link>
+                            <Link to="/notes">{texts[language].note}</Link>
                             <Link to="/profile">{texts[language].profile}</Link>
                             <Link className="logout" to="/" onClick={logout}>{texts[language].logout}</Link>
                         </>
