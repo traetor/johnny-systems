@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import API_URL from '../../apiConfig';
+import axios from "axios";
 
 function NotePopup({ note, onClose, isViewOnly = false }) {
     const [title, setTitle] = useState(note?.title || '');

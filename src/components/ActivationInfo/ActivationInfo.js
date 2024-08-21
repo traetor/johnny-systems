@@ -1,5 +1,5 @@
 import React from 'react';
-import texts from "../../texts"
+import texts from "../../texts";
 import './ActivationInfo.scss';
 
 function ActivationInfo({ language }) {
