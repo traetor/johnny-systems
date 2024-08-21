@@ -39,22 +39,26 @@ function ResetPasswordPage({ language }) {
     };
 
     return (
-        <div className="auth-container">
-            <h2>{texts[language].resetPassword}</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="password"
-                    placeholder={texts[language].newPassword}
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    disabled={loading}
-                />
-                <button type="submit" className="button primary" disabled={loading}>
-                    {loading ? texts[language].loading : texts[language].resetPassword}
-                </button>
-                {message && <div className="success-message">{message}</div>}
-                {error && <div className="error-message">{error}</div>}
-            </form>
+        <div className="intro">
+            <div className="main-container intro-content">
+                <div className="auth-container">
+                    <h2>{texts[language].resetPassword}</h2>
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            type="password"
+                            placeholder={texts[language].newPassword}
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            disabled={loading}
+                        />
+                        <button type="submit" className="button primary" disabled={loading}>
+                            {loading ? texts[language].loading : texts[language].resetPassword}
+                        </button>
+                        {message && <div className="success-message">{message}</div>}
+                        {error && <div className="error-message">{error}</div>}
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }

@@ -1,15 +1,15 @@
 import React from 'react';
 
-function NoteList({ notes, onEdit, onDelete }) {
+function NoteList({ notes, onEdit, onDelete, onViewDetails }) { // Dodajemy onViewDetails jako prop
     return (
         <div className="note-list">
             {notes.map(note => (
                 <div key={note.id} className="note-item">
-                    <h3>{note.title}</h3>
-                    <p>{note.content}</p>
+                    <h3>{note.title}</h3> {/* Wyświetlamy tylko tytuł notatki */}
                     <div className="note-actions">
-                        <button className="button primary" onClick={() => onEdit(note)}>Edit</button>
-                        <button className="button primary" onClick={() => onDelete(note.id)}>Delete</button>
+                        <button className="button primary" onClick={() => onViewDetails(note)}>Szczegóły</button> {/* Nowy przycisk */}
+                        <button className="button primary" onClick={() => onEdit(note)}>Edytuj</button>
+                        <button className="button primary" onClick={() => onDelete(note.id)}>Usuń</button>
                     </div>
                 </div>
             ))}

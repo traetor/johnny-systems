@@ -64,6 +64,7 @@ function Navbar({ language, handleLanguageChange }) {
                         {isLoggedIn && (
                             <>
                                 <Link to="/tasks" onClick={toggleMobileMenu}>{texts[language].tasks}</Link>
+                                <Link to="/notes" onClick={toggleMobileMenu}>{texts[language].notes}</Link>
                                 <Link to="/profile" onClick={toggleMobileMenu}>{texts[language].profile}</Link>
                                 <Link to="/" onClick={() => {
                                     logout();
