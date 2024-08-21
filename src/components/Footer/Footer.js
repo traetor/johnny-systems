@@ -1,4 +1,3 @@
-// components/Footer/Footer.js
 import React from 'react';
 import './Footer.scss';
 // import logo from '../../assets/logo.svg'; // Miejsce na plik z logiem svg
