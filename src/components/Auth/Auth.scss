@@ -41,6 +41,12 @@ $background-overlay: rgba(0, 0, 0, 0.7);
     width: 378px;
   }
 
+  a {
+    color: $text-color;
+    text-decoration: none;
+    font-size: .7rem;
+  }
+
   button {
     display: block;
     width: 400px;
@@ -84,6 +90,10 @@ $background-overlay: rgba(0, 0, 0, 0.7);
     align-items: center;
     justify-content: center;
   }
+}
+
+.forgot-password-link {
+  margin-top: 5px;
 }
 
 .main-container {

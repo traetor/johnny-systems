@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Auth.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Importujemy Link
 import API_URL from '../../apiConfig';
 import { useAuth } from '../../contexts/AuthContext';
 import Welcome from "../Welcome/Welcome";
@@ -64,41 +64,6 @@ function Login({ language }) {
         }
     };
 
-    const handleResendActivation = async () => {
-        setLoading(true);
-        setError('');
-
-        try {
-            const response = await axios.post(`${API_URL}/auth/resend-activation`, { email });
-            if (response.status === 200) {
-                setError(texts[language].activationLinkResent);
-                setResendLinkVisible(false);
-            }
-        } catch (error) {
-            console.error('Error resending activation email', error);
-            setError(texts[language].activationLinkError);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        if (error.includes('<a href="#" id="resend-link">')) {
-            const resendLink = document.getElementById('resend-link');
-            if (resendLink) {
-                resendLink.addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    try {
-                        await axios.post(`${API_URL}/auth/resend-activation`, { email });
-                        setError(texts[language].activationLinkResent);
-                    } catch (err) {
-                        setError(texts[language].activationLinkError);
-                    }
-                });
-            }
-        }
-    }, [error, language, email]);
-
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -134,6 +99,9 @@ function Login({ language }) {
                                 {loading ? texts[language].loading : texts[language].login}
                             </button>
                             {error && <div className="error-message" dangerouslySetInnerHTML={{ __html: error }} />}
+                            <div className="forgot-password-link">
+                                <Link to="/forgot-password">{texts[language].forgotPassword}</Link> {/* Nowy link */}
+                            </div>
                         </form>
                     </div>
                 </div>

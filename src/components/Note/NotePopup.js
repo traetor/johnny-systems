@@ -47,7 +47,7 @@ function NotePopup({ note, onClose }) {
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                     />
-                    <select value={status} onChange={(e) => setStatus(e.target.value)}>
+                    <select className="d-none" value={status} onChange={(e) => setStatus(e.target.value)}>
                         <option value="ważne">Ważne</option>
                         <option value="wykonane">Wykonane</option>
                     </select>

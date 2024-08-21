@@ -7,6 +7,8 @@ import RegisterPage from './pages/RegisterPage';
 import TaskPage from './pages/TaskPage';
 import ProfilePage from './pages/ProfilePage';
 import ActivatePage from './pages/ActivatePage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
@@ -51,6 +53,8 @@ function App() {
                     <Route path="/profile" element={<PrivateRoute><ProfilePage language={language} /></PrivateRoute>} />
                     <Route path="/activate/:token" element={<ActivatePage language={language} />} />
                     <Route path="/notes" element={<PrivateRoute><NoteListPage language={language} /></PrivateRoute>} />
+                    <Route path="/forgot-password" element={<ForgotPasswordPage language={language} />} />
+                    <Route path="/reset-password/:token" element={<ResetPasswordPage language={language} />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 <Footer language={language} />

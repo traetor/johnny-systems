@@ -65,7 +65,15 @@ const texts = {
         registration: 'Rejestracja',
         activationLinkResent: 'Nowy link aktywacyjny został wysłany na twój email.',
         activationLinkError: 'Błąd wysyłania linku aktywacyjnego. Spróbuj ponownie później.',
-        showPassword: 'Pokaż hasło'
+        showPassword: 'Pokaż hasło',
+        forgotPassword: 'Zapomniałeś hasła?',
+        resetPassword: 'Zresetuj hasło',
+        newPassword: 'Nowe hasło',
+        sendResetLink: 'Wyślij link do resetowania hasła',
+        resetLinkSent: 'Link do resetowania hasła został wysłany na Twój email.',
+        resetLinkError: 'Błąd wysyłania linku resetującego. Spróbuj ponownie później.',
+        passwordResetSuccess: 'Hasło zostało pomyślnie zresetowane. Przekierowanie na stronę logowania...',
+        resetPasswordError: 'Błąd resetowania hasła. Spróbuj ponownie później.'
     },
     en: {
         tasks: 'Tasks',
@@ -85,7 +93,7 @@ const texts = {
         confirmDelete: 'Are you sure you want to delete this note?',
         logout: 'Logout',
         login: 'Login',
-        loginPage: 'Login Page',
+        loginPage: 'Sign in',
         register: 'Register',
         switchLanguage: 'Switch language:',
         error: 'Please fill in all fields',
@@ -133,7 +141,15 @@ const texts = {
         registration: 'Registration',
         activationLinkResent: 'A new activation link has been sent to your email.',
         activationLinkError: 'Error sending activation link. Please try again later.',
-        showPassword: 'Show password'
+        showPassword: 'Show password',
+        forgotPassword: 'Forgot Password?',
+        resetPassword: 'Reset Password',
+        newPassword: 'New Password',
+        sendResetLink: 'Send Reset Link',
+        resetLinkSent: 'A password reset link has been sent to your email.',
+        resetLinkError: 'Error sending reset link. Please try again later.',
+        passwordResetSuccess: 'Password reset successfully. Redirecting to login page...',
+        resetPasswordError: 'Error resetting password. Please try again later.'
     },
     de: {
         tasks: 'Aufgaben',
@@ -201,7 +217,15 @@ const texts = {
         registration: 'Registrierung',
         activationLinkResent: 'Ein neuer Aktivierungslink wurde an Ihre E-Mail gesendet.',
         activationLinkError: 'Fehler beim Senden des Aktivierungslinks. Bitte versuchen Sie es später erneut.',
-        showPassword: 'Passwort anzeigen'
+        showPassword: 'Passwort anzeigen',
+        forgotPassword: 'Passwort vergessen?',
+        resetPassword: 'Passwort zurücksetzen',
+        newPassword: 'Neues Passwort',
+        sendResetLink: 'Link zum Zurücksetzen senden',
+        resetLinkSent: 'Ein Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet.',
+        resetLinkError: 'Fehler beim Senden des Zurücksetzungslinks. Bitte versuchen Sie es später erneut.',
+        passwordResetSuccess: 'Passwort erfolgreich zurückgesetzt. Weiterleitung zur Anmeldeseite...',
+        resetPasswordError: 'Fehler beim Zurücksetzen des Passworts. Bitte versuchen Sie es später erneut.'
     }
 };
 
