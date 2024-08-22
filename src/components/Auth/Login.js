@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Auth.scss';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Importujemy Link
 import API_URL from '../../apiConfig';
 import { useAuth } from '../../contexts/AuthContext';
 import Welcome from "../Welcome/Welcome";
@@ -16,43 +16,25 @@ function Login({ language }) {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [resendLinkVisible, setResendLinkVisible] = useState(false);
-    const [captchaToken, setCaptchaToken] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         // Usuń sesję przy wejściu na stronę logowania
         logout();
-
-        // Załaduj skrypt reCAPTCHA
-        const loadRecaptchaScript = () => {
-            const script = document.createElement('script');
-            script.src = `https://www.google.com/recaptcha/api.js?render=6LeD1SwqAAAAAAsO7N045EX3Vn37tFpSBJt_tfVK`; // Zamień YOUR_SITE_KEY na swój klucz publiczny
-            script.async = true;
-            script.onload = () => {
-                if (window.grecaptcha) {
-                    window.grecaptcha.ready(() => {
-                        window.grecaptcha.execute();
-                    });
-                }
-            };
-            document.body.appendChild(script);
-        };
-
-        loadRecaptchaScript();
     }, [logout]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!email || !password || !captchaToken) {
+        if (!email || !password) {
             setError(texts[language].error);
             return;
         }
 
-        setLoading(true);
+        setLoading(true); // Ustawia stan ładowania na true
 
         try {
-            const response = await axios.post(`${API_URL}/auth/login`, { email, password, captcha: captchaToken });
+            const response = await axios.post(`${API_URL}/auth/login`, { email, password });
 
             if (response.status === 200) {
                 const { token } = response.data;
@@ -78,20 +60,12 @@ function Login({ language }) {
             }
             console.error('Błąd logowania', error);
         } finally {
-            setLoading(false);
+            setLoading(false); // Resetuje stan ładowania po zakończeniu requestu
         }
     };
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
-    };
-
-    const handleRecaptcha = () => {
-        if (window.grecaptcha) {
-            window.grecaptcha.execute().then((token) => {
-                setCaptchaToken(token);
-            });
-        }
     };
 
     return (
@@ -100,14 +74,14 @@ function Login({ language }) {
                 <Welcome language={language} />
                 <div className="right-section">
                     <div className="auth-container">
-                        <form onSubmit={(e) => { handleRecaptcha(); handleSubmit(e); }}>
+                        <form onSubmit={handleSubmit}>
                             <h2>{texts[language].loginPage}</h2>
                             <input
                                 type="email"
                                 placeholder={texts[language].email}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                disabled={loading}
+                                disabled={loading} // Blokuje pole w czasie ładowania
                             />
                             <div className="password-container">
                                 <input
@@ -115,7 +89,7 @@ function Login({ language }) {
                                     placeholder={texts[language].password}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    disabled={loading}
+                                    disabled={loading} // Blokuje pole w czasie ładowania
                                 />
                                 <button type="button" onClick={toggleShowPassword} disabled={loading}>
                                     {showPassword ? texts[language].hide : texts[language].show}
@@ -126,7 +100,7 @@ function Login({ language }) {
                             </button>
                             {error && <div className="error-message" dangerouslySetInnerHTML={{ __html: error }} />}
                             <div className="forgot-password-link">
-                                <Link to="/forgot-password">{texts[language].forgotPassword}</Link>
+                                <Link to="/forgot-password">{texts[language].forgotPassword}</Link> {/* Nowy link */}
                             </div>
                         </form>
                     </div>
