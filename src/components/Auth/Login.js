@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Auth.scss';
-import { useNavigate, Link } from 'react-router-dom'; // Importujemy Link
+import { useNavigate, Link } from 'react-router-dom';
 import API_URL from '../../apiConfig';
 import { useAuth } from '../../contexts/AuthContext';
 import Welcome from "../Welcome/Welcome";
 import texts from "../../texts";
 import "./Password.scss";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 function Login({ language }) {
     const { login, logout } = useAuth();
@@ -16,6 +17,7 @@ function Login({ language }) {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [resendLinkVisible, setResendLinkVisible] = useState(false);
+    const [captchaValue, setCaptchaValue] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,15 +28,15 @@ function Login({ language }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!email || !password) {
+        if (!email || !password || !captchaValue) {
             setError(texts[language].error);
             return;
         }
 
-        setLoading(true); // Ustawia stan ładowania na true
+        setLoading(true);
 
         try {
-            const response = await axios.post(`${API_URL}/auth/login`, { email, password });
+            const response = await axios.post(`${API_URL}/auth/login`, { email, password, captcha: captchaValue });
 
             if (response.status === 200) {
                 const { token } = response.data;
@@ -60,12 +62,16 @@ function Login({ language }) {
             }
             console.error('Błąd logowania', error);
         } finally {
-            setLoading(false); // Resetuje stan ładowania po zakończeniu requestu
+            setLoading(false);
         }
     };
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
+    };
+
+    const onCaptchaChange = (value) => {
+        setCaptchaValue(value);
     };
 
     return (
@@ -81,7 +87,7 @@ function Login({ language }) {
                                 placeholder={texts[language].email}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                disabled={loading} // Blokuje pole w czasie ładowania
+                                disabled={loading}
                             />
                             <div className="password-container">
                                 <input
@@ -89,18 +95,23 @@ function Login({ language }) {
                                     placeholder={texts[language].password}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    disabled={loading} // Blokuje pole w czasie ładowania
+                                    disabled={loading}
                                 />
                                 <button type="button" onClick={toggleShowPassword} disabled={loading}>
                                     {showPassword ? texts[language].hide : texts[language].show}
                                 </button>
                             </div>
+                            <ReCAPTCHA
+                                sitekey="6LeD1SwqAAAAAAsO7N045EX3Vn37tFpSBJt_tfVK" // Wstaw swój klucz publiczny reCAPTCHA
+                                onChange={onCaptchaChange}
+                                size="normal"
+                            />
                             <button className="button primary" type="submit" disabled={loading}>
                                 {loading ? texts[language].loading : texts[language].login}
                             </button>
                             {error && <div className="error-message" dangerouslySetInnerHTML={{ __html: error }} />}
                             <div className="forgot-password-link">
-                                <Link to="/forgot-password">{texts[language].forgotPassword}</Link> {/* Nowy link */}
+                                <Link to="/forgot-password">{texts[language].forgotPassword}</Link>
                             </div>
                         </form>
                     </div>
