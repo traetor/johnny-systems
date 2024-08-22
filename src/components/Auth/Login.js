@@ -7,7 +7,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import Welcome from "../Welcome/Welcome";
 import texts from "../../texts";
 import "./Password.scss";
-import ReCAPTCHA from 'react-google-recaptcha';
 
 function Login({ language }) {
     const { login, logout } = useAuth();
@@ -17,18 +16,35 @@ function Login({ language }) {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [resendLinkVisible, setResendLinkVisible] = useState(false);
-    const [captchaValue, setCaptchaValue] = useState(null);
+    const [captchaToken, setCaptchaToken] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         // Usuń sesję przy wejściu na stronę logowania
         logout();
+
+        // Załaduj skrypt reCAPTCHA
+        const loadRecaptchaScript = () => {
+            const script = document.createElement('script');
+            script.src = `https://www.google.com/recaptcha/api.js?render=6LeD1SwqAAAAAAsO7N045EX3Vn37tFpSBJt_tfVK`; // Zamień YOUR_SITE_KEY na swój klucz publiczny
+            script.async = true;
+            script.onload = () => {
+                if (window.grecaptcha) {
+                    window.grecaptcha.ready(() => {
+                        window.grecaptcha.execute();
+                    });
+                }
+            };
+            document.body.appendChild(script);
+        };
+
+        loadRecaptchaScript();
     }, [logout]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!email || !password || !captchaValue) {
+        if (!email || !password || !captchaToken) {
             setError(texts[language].error);
             return;
         }
@@ -36,7 +52,7 @@ function Login({ language }) {
         setLoading(true);
 
         try {
-            const response = await axios.post(`${API_URL}/auth/login`, { email, password, captcha: captchaValue });
+            const response = await axios.post(`${API_URL}/auth/login`, { email, password, captcha: captchaToken });
 
             if (response.status === 200) {
                 const { token } = response.data;
@@ -70,8 +86,12 @@ function Login({ language }) {
         setShowPassword(!showPassword);
     };
 
-    const onCaptchaChange = (value) => {
-        setCaptchaValue(value);
+    const handleRecaptcha = () => {
+        if (window.grecaptcha) {
+            window.grecaptcha.execute().then((token) => {
+                setCaptchaToken(token);
+            });
+        }
     };
 
     return (
@@ -80,7 +100,7 @@ function Login({ language }) {
                 <Welcome language={language} />
                 <div className="right-section">
                     <div className="auth-container">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={(e) => { handleRecaptcha(); handleSubmit(e); }}>
                             <h2>{texts[language].loginPage}</h2>
                             <input
                                 type="email"
@@ -101,11 +121,6 @@ function Login({ language }) {
                                     {showPassword ? texts[language].hide : texts[language].show}
                                 </button>
                             </div>
-                            <ReCAPTCHA
-                                sitekey="6LeD1SwqAAAAAAsO7N045EX3Vn37tFpSBJt_tfVK" // Wstaw swój klucz publiczny reCAPTCHA
-                                onChange={onCaptchaChange}
-                                size="normal"
-                            />
                             <button className="button primary" type="submit" disabled={loading}>
                                 {loading ? texts[language].loading : texts[language].login}
                             </button>
