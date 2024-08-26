@@ -14,6 +14,7 @@ import PrivateRoute from './components/PrivateRoute';
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import NoteListPage from './pages/NoteListPage';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'; // Import GoogleReCaptchaProvider
+import CookieBanner from './components/CookieBanner/CookieBanner'; // Import CookieBanner
 import './App.scss';
 
 const saveLanguageToLocalStorage = (language) => {
@@ -60,6 +61,7 @@ function App() {
                         <Route path="*" element={<Navigate to="/" replace />} />
                     </Routes>
                     <Footer language={language} />
+                    <CookieBanner language={language} /> {/* Add CookieBanner here */}
                 </div>
             </GoogleReCaptchaProvider>
         </AuthProvider>

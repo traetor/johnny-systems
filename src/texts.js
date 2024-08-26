@@ -73,7 +73,11 @@ const texts = {
         resetLinkSent: 'Link do resetowania hasła został wysłany na Twój email.',
         resetLinkError: 'Błąd wysyłania linku resetującego. Spróbuj ponownie później.',
         passwordResetSuccess: 'Hasło zostało pomyślnie zresetowane. Przekierowanie na stronę logowania...',
-        resetPasswordError: 'Błąd resetowania hasła. Spróbuj ponownie później.'
+        resetPasswordError: 'Błąd resetowania hasła. Spróbuj ponownie później.',
+        cookieBanner: {
+            message: 'Nasza strona używa ciasteczek, aby zapewnić Ci najlepszą jakość usług. Kontynuując korzystanie z naszej strony, wyrażasz zgodę na używanie ciasteczek.',
+            accept: 'Akceptuję'
+        }
     },
     en: {
         tasks: 'Tasks',
@@ -149,7 +153,11 @@ const texts = {
         resetLinkSent: 'A password reset link has been sent to your email.',
         resetLinkError: 'Error sending reset link. Please try again later.',
         passwordResetSuccess: 'Password reset successfully. Redirecting to login page...',
-        resetPasswordError: 'Error resetting password. Please try again later.'
+        resetPasswordError: 'Error resetting password. Please try again later.',
+        cookieBanner: {
+            message: 'Our site uses cookies to ensure you get the best experience. By continuing to use our site, you consent to our use of cookies.',
+            accept: 'I Accept'
+        }
     },
     de: {
         tasks: 'Aufgaben',
@@ -225,7 +233,11 @@ const texts = {
         resetLinkSent: 'Ein Link zum Zurücksetzen des Passworts wurde an Ihre E-Mail gesendet.',
         resetLinkError: 'Fehler beim Senden des Zurücksetzungslinks. Bitte versuchen Sie es später erneut.',
         passwordResetSuccess: 'Passwort erfolgreich zurückgesetzt. Weiterleitung zur Anmeldeseite...',
-        resetPasswordError: 'Fehler beim Zurücksetzen des Passworts. Bitte versuchen Sie es später erneut.'
+        resetPasswordError: 'Fehler beim Zurücksetzen des Passworts. Bitte versuchen Sie es später erneut.',
+        cookieBanner: {
+            message: 'Unsere Website verwendet Cookies, um sicherzustellen, dass Sie die beste Erfahrung machen. Indem Sie unsere Website weiterhin nutzen, stimmen Sie der Verwendung von Cookies zu.',
+            accept: 'Akzeptieren'
+        }
     }
 };
 
