@@ -13,6 +13,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import NoteListPage from './pages/NoteListPage';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'; // Import GoogleReCaptchaProvider
 import './App.scss';
 
 const saveLanguageToLocalStorage = (language) => {
@@ -43,22 +44,24 @@ function App() {
 
     return (
         <AuthProvider>
-            <div className="app-container">
-                <Navbar language={language} handleLanguageChange={handleLanguageChange} />
-                <ScrollToTop /> {/* Dodaj ScrollToTop tutaj */}
-                <Routes>
-                    <Route path="/" element={<LoginPage language={language} />} />
-                    <Route path="/register" element={<RegisterPage language={language} />} />
-                    <Route path="/tasks" element={<PrivateRoute><TaskPage language={language} /></PrivateRoute>} />
-                    <Route path="/profile" element={<PrivateRoute><ProfilePage language={language} /></PrivateRoute>} />
-                    <Route path="/activate/:token" element={<ActivatePage language={language} />} />
-                    <Route path="/notes" element={<PrivateRoute><NoteListPage language={language} /></PrivateRoute>} />
-                    <Route path="/forgot-password" element={<ForgotPasswordPage language={language} />} />
-                    <Route path="/reset-password/:token" element={<ResetPasswordPage language={language} />} />
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-                <Footer language={language} />
-            </div>
+            <GoogleReCaptchaProvider reCaptchaKey="your-recaptcha-site-key">
+                <div className="app-container">
+                    <Navbar language={language} handleLanguageChange={handleLanguageChange} />
+                    <ScrollToTop />
+                    <Routes>
+                        <Route path="/" element={<LoginPage language={language} />} />
+                        <Route path="/register" element={<RegisterPage language={language} />} />
+                        <Route path="/tasks" element={<PrivateRoute><TaskPage language={language} /></PrivateRoute>} />
+                        <Route path="/profile" element={<PrivateRoute><ProfilePage language={language} /></PrivateRoute>} />
+                        <Route path="/activate/:token" element={<ActivatePage language={language} />} />
+                        <Route path="/notes" element={<PrivateRoute><NoteListPage language={language} /></PrivateRoute>} />
+                        <Route path="/forgot-password" element={<ForgotPasswordPage language={language} />} />
+                        <Route path="/reset-password/:token" element={<ResetPasswordPage language={language} />} />
+                        <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                    <Footer language={language} />
+                </div>
+            </GoogleReCaptchaProvider>
         </AuthProvider>
     );
 }

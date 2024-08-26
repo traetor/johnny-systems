@@ -7,7 +7,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import Welcome from "../Welcome/Welcome";
 import texts from "../../texts";
 import "./Password.scss";
-import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'; // Usunięto GoogleReCaptchaProvider
 
 function Login({ language }) {
     const { login, logout } = useAuth();
@@ -17,7 +17,7 @@ function Login({ language }) {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [resendLinkVisible, setResendLinkVisible] = useState(false);
-    const { executeRecaptcha } = useGoogleReCaptcha();
+    const { executeRecaptcha } = useGoogleReCaptcha(); // Używamy hooka z kontekstu
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -79,46 +79,44 @@ function Login({ language }) {
     };
 
     return (
-        <GoogleReCaptchaProvider reCaptchaKey="6LeD1SwqAAAAAAsO7N045EX3Vn37tFpSBJt_tfVK">
-            <div className="intro">
-                <div className="main-container intro-content">
-                    <Welcome language={language} />
-                    <div className="right-section">
-                        <div className="auth-container">
-                            <form onSubmit={handleSubmit}>
-                                <h2>{texts[language].loginPage}</h2>
+        <div className="intro">
+            <div className="main-container intro-content">
+                <Welcome language={language} />
+                <div className="right-section">
+                    <div className="auth-container">
+                        <form onSubmit={handleSubmit}>
+                            <h2>{texts[language].loginPage}</h2>
+                            <input
+                                type="email"
+                                placeholder={texts[language].email}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                disabled={loading}
+                            />
+                            <div className="password-container">
                                 <input
-                                    type="email"
-                                    placeholder={texts[language].email}
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder={texts[language].password}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     disabled={loading}
                                 />
-                                <div className="password-container">
-                                    <input
-                                        type={showPassword ? 'text' : 'password'}
-                                        placeholder={texts[language].password}
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        disabled={loading}
-                                    />
-                                    <button type="button" onClick={toggleShowPassword} disabled={loading}>
-                                        {showPassword ? texts[language].hide : texts[language].show}
-                                    </button>
-                                </div>
-                                <button className="button primary" type="submit" disabled={loading}>
-                                    {loading ? texts[language].loading : texts[language].login}
+                                <button type="button" onClick={toggleShowPassword} disabled={loading}>
+                                    {showPassword ? texts[language].hide : texts[language].show}
                                 </button>
-                                {error && <div className="error-message" dangerouslySetInnerHTML={{ __html: error }} />}
-                                <div className="forgot-password-link">
-                                    <Link to="/forgot-password">{texts[language].forgotPassword}</Link>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <button className="button primary" type="submit" disabled={loading}>
+                                {loading ? texts[language].loading : texts[language].login}
+                            </button>
+                            {error && <div className="error-message" dangerouslySetInnerHTML={{ __html: error }} />}
+                            <div className="forgot-password-link">
+                                <Link to="/forgot-password">{texts[language].forgotPassword}</Link>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </GoogleReCaptchaProvider>
+        </div>
     );
 }
 
