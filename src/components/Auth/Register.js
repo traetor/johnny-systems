@@ -6,6 +6,7 @@ import ActivationInfo from '../ActivationInfo/ActivationInfo';
 import { useNavigate } from 'react-router-dom';
 import Welcome from "../Welcome/Welcome";
 import texts from "../../texts";
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'; // Import hooka reCAPTCHA
 
 function Register({ language }) {
     const [username, setUsername] = useState('');
@@ -17,6 +18,7 @@ function Register({ language }) {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [loading, setLoading] = useState(false);
+    const { executeRecaptcha } = useGoogleReCaptcha(); // Używamy hooka z kontekstu
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -49,9 +51,14 @@ function Register({ language }) {
             return;
         }
 
-        setLoading(true); // Ustawia stan ładowania na true
+        setLoading(true);
 
         try {
+            let recaptchaToken = '';
+            if (executeRecaptcha) {
+                recaptchaToken = await executeRecaptcha('register');
+            }
+
             // Sprawdzenie unikalności adresu email
             const checkEmailResponse = await axios.get(`${API_URL}/auth/check-email/${email}`);
             if (!checkEmailResponse.data.available) {
@@ -67,13 +74,20 @@ function Register({ language }) {
             }
 
             // Jeśli email i nazwa użytkownika są unikalne, wykonaj rejestrację
-            await axios.post(`${API_URL}/auth/register`, { username, email, password, language });
+            await axios.post(`${API_URL}/auth/register`, {
+                username,
+                email,
+                password,
+                language,
+                recaptchaToken // Przekazanie tokenu reCAPTCHA
+            });
+
             setRegistered(true);
         } catch (error) {
             console.error('Registration error:', error);
             setError(texts[language].registrationError || 'Error during registration. Please try again later.');
         } finally {
-            setLoading(false); // Resetuje stan ładowania po zakończeniu requestu
+            setLoading(false);
         }
     };
 
@@ -101,14 +115,14 @@ function Register({ language }) {
                                     placeholder={texts[language].email}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    disabled={loading} // Blokuje pole w czasie ładowania
+                                    disabled={loading}
                                 />
                                 <input
                                     type="text"
                                     placeholder={texts[language].username}
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
-                                    disabled={loading} // Blokuje pole w czasie ładowania
+                                    disabled={loading}
                                 />
                                 <div className="password-container">
                                     <input
@@ -116,7 +130,7 @@ function Register({ language }) {
                                         placeholder={texts[language].password}
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        disabled={loading} // Blokuje pole w czasie ładowania
+                                        disabled={loading}
                                     />
                                     <button type="button" onClick={toggleShowPassword} disabled={loading}>
                                         {showPassword ? texts[language].hide : texts[language].show}
@@ -128,7 +142,7 @@ function Register({ language }) {
                                         placeholder={texts[language].confirmPassword}
                                         value={confirmPassword}
                                         onChange={(e) => setConfirmPassword(e.target.value)}
-                                        disabled={loading} // Blokuje pole w czasie ładowania
+                                        disabled={loading}
                                     />
                                     <button type="button" onClick={toggleShowConfirmPassword} disabled={loading}>
                                         {showConfirmPassword ? texts[language].hide : texts[language].show}

@@ -44,7 +44,7 @@ function App() {
 
     return (
         <AuthProvider>
-            <GoogleReCaptchaProvider reCaptchaKey="your-recaptcha-site-key">
+            <GoogleReCaptchaProvider reCaptchaKey="6LeD1SwqAAAAAAsO7N045EX3Vn37tFpSBJt_tfVK">
                 <div className="app-container">
                     <Navbar language={language} handleLanguageChange={handleLanguageChange} />
                     <ScrollToTop />
